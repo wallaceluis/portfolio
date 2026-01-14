@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
 
 export const Footer = () => {
+    const { t } = useLanguage();
     return (
         <footer className="py-12 bg-neutral-950 border-t border-white/10 relative z-20">
             <div className="max-w-7xl mx-auto px-4 flex flex-col items-center gap-6">
                 <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500">
-                    Let's build something amazing together
+                    {t('footer.title')}
                 </h3>
 
                 <div className="flex gap-6 mt-4">
@@ -38,7 +40,7 @@ export const Footer = () => {
                 </div>
 
                 <p className="text-sm text-neutral-600 mt-8">
-                    © {new Date().getFullYear()} Wallace Luis. All rights reserved.
+                    © {new Date().getFullYear()} Wallace Luis. {t('footer.rights')}
                 </p>
             </div>
         </footer>

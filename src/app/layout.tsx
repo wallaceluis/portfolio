@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/contexts/language-context";
+import WhatsAppModal from "@/components/whatsapp-modal";
+import LanguageSelector from "@/components/language-selector";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +20,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <body className={`${inter.className} bg-black text-white antialiased`}>
-        {children}
+        <LanguageProvider>
+          {children}
+          <LanguageSelector />
+          <WhatsAppModal />
+        </LanguageProvider>
       </body>
     </html>
   );

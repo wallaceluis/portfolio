@@ -4,6 +4,7 @@ import { DualModeToggle } from "@/components/dual-mode-toggle";
 import { Hero } from "@/components/hero";
 import { Experience } from "@/components/experience";
 import { TechStack } from "@/components/tech-stack";
+import { Timeline } from "@/components/timeline";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
             <Hero mode={mode} />
             <Experience mode={mode} />
             <TechStack mode={mode} />
+            <Timeline mode={mode} />
             <Footer />
         </main>
     );

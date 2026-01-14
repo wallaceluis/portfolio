@@ -7,7 +7,10 @@ import { DataGridBackground } from "./ui/data-grid-background";
 import { motion, AnimatePresence } from "framer-motion";
 
 
+import { useLanguage } from "@/contexts/language-context";
+
 export const Hero = ({ mode }: { mode: "developer" | "data-analyst" }) => {
+    const { t } = useLanguage();
     return (
         <div className={`relative w-full h-[35rem] flex flex-col items-center justify-center overflow-hidden transition-colors duration-500 ${mode === 'developer' ? 'bg-slate-950' : 'bg-zinc-950'}`}>
             {/* Background Layers */}
@@ -61,7 +64,7 @@ export const Hero = ({ mode }: { mode: "developer" | "data-analyst" }) => {
                 </div>
 
                 <p className="mt-8 mb-8 text-neutral-400 max-w-lg mx-auto text-base">
-                    Building the future with code and data. Based in Campinas-SP, transforming ideas into scalable solutions.
+                    {t('hero.description')}
                 </p>
             </div>
 

@@ -12,32 +12,36 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { useLanguage } from "@/contexts/language-context";
+
 export const Experience = ({ mode }: { mode: "developer" | "data-analyst" }) => {
+    const { t } = useLanguage();
+
     const devItems = [
         {
-            title: "Recruitment Ecosystem",
-            description: "Built a comprehensive recruitment platform using Nest.js and Next.js, handling thousands of daily applications.",
+            title: t('experience.dev.recruitment.title'),
+            description: t('experience.dev.recruitment.desc'),
             header: <div className="w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-900 to-slate-800 border border-white/10" />,
             icon: <Terminal className="h-4 w-4 text-neutral-500" />,
             className: "md:col-span-2",
         },
         {
-            title: "OpenAI Smart Integrations",
-            description: "Engineered automated resume screening and chatbot assistants for Grupo Multi360.",
+            title: t('experience.dev.openai.title'),
+            description: t('experience.dev.openai.desc'),
             header: <div className="w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-blue-950 to-indigo-900 border border-white/10" />,
             icon: <Bot className="h-4 w-4 text-neutral-500" />,
             className: "md:col-span-1",
         },
         {
-            title: "Scalable Backend Systems",
-            description: "Developed microservices architecture using Prisma ORM and Docker for high availability.",
+            title: t('experience.dev.backend.title'),
+            description: t('experience.dev.backend.desc'),
             header: <div className="w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-violet-950 to-purple-900 border border-white/10" />,
             icon: <Code2 className="h-4 w-4 text-neutral-500" />,
             className: "md:col-span-1",
         },
         {
-            title: "Modern Frontend Architecture",
-            description: "Expertise in React, Tailwind CSS, and Framer Motion for highly interactive generic UIs.",
+            title: t('experience.dev.frontend.title'),
+            description: t('experience.dev.frontend.desc'),
             header: <div className="w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-cyan-950 to-blue-900 border border-white/10" />,
             icon: <Terminal className="h-4 w-4 text-neutral-500" />,
             className: "md:col-span-2",
@@ -46,29 +50,29 @@ export const Experience = ({ mode }: { mode: "developer" | "data-analyst" }) => 
 
     const dataItems = [
         {
-            title: "Telefônica VIVO Analytics",
-            description: "Led the development of Market Share analysis tools, driving strategic decision making in regional sectors.",
+            title: t('experience.data.vivo.title'),
+            description: t('experience.data.vivo.desc'),
             header: <div className="w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-emerald-950 to-green-900 border border-white/10" />,
             icon: <LayoutDashboard className="h-4 w-4 text-neutral-500" />,
             className: "md:col-span-2",
         },
         {
-            title: "SLA Monitoring Dashboards",
-            description: "Designed real-time Power BI dashboards to track Service Level Agreements and operational KPIs.",
+            title: t('experience.data.sla.title'),
+            description: t('experience.data.sla.desc'),
             header: <div className="w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-teal-950 to-cyan-900 border border-white/10" />,
             icon: <PieChart className="h-4 w-4 text-neutral-500" />,
             className: "md:col-span-1",
         },
         {
-            title: "Marketing Intelligence",
-            description: "Implemented Looker Studio reports to analyze campaign performance and ROI.",
+            title: t('experience.data.marketing.title'),
+            description: t('experience.data.marketing.desc'),
             header: <div className="w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-orange-950 to-red-900 border border-white/10" />,
             icon: <TrendingUp className="h-4 w-4 text-neutral-500" />,
             className: "md:col-span-1",
         },
         {
-            title: "Advanced Data Processing",
-            description: "Utilized Python and SQL for complex data transformation and ETL pipelines.",
+            title: t('experience.data.processing.title'),
+            description: t('experience.data.processing.desc'),
             header: <div className="w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-slate-900 to-gray-800 border border-white/10" />,
             icon: <Database className="h-4 w-4 text-neutral-500" />,
             className: "md:col-span-2",
@@ -84,7 +88,7 @@ export const Experience = ({ mode }: { mode: "developer" | "data-analyst" }) => 
                     <span className={mode === 'developer' ? "text-blue-500" : "text-emerald-500"}>
                         {mode === 'developer' ? "Dev" : "Data"}
                     </span>{" "}
-                    Experience
+                    {t('experience.sectionTitle')}
                 </h2>
                 <BentoGrid>
                     {items.map((item, i) => (
