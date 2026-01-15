@@ -15,24 +15,26 @@ import {
     Cpu
 } from "lucide-react";
 
-export const TechStack = ({ mode }: { mode: "developer" | "data-analyst" }) => {
-    const devStack = [
-        { name: "React", icon: Atom },
-        { name: "Next.js", icon: AppWindow },
-        { name: "Nest.js", icon: Server },
-        { name: "Prisma", icon: Database },
-        { name: "TypeScript", icon: FileCode },
-        { name: "Docker", icon: Layers },
-    ];
 
-    const dataStack = [
-        { name: "Python", icon: Code },
-        { name: "SQL", icon: Database },
-        { name: "Power BI", icon: BarChart4 },
-        { name: "Looker Studio", icon: AreaChart },
-        { name: "Machine Learning", icon: Cpu },
-        { name: "Strategic Analysis", icon: Binary },
-    ];
+const devStack = [
+    { name: "React", icon: Atom },
+    { name: "Next.js", icon: AppWindow },
+    { name: "Nest.js", icon: Server },
+    { name: "Prisma", icon: Database },
+    { name: "TypeScript", icon: FileCode },
+    { name: "Docker", icon: Layers },
+];
+
+const dataStack = [
+    { name: "Python", icon: Code },
+    { name: "SQL", icon: Database },
+    { name: "Power BI", icon: BarChart4 },
+    { name: "Looker Studio", icon: AreaChart },
+    { name: "Machine Learning", icon: Cpu },
+    { name: "Strategic Analysis", icon: Binary },
+];
+
+export const TechStack = ({ mode }: { mode: "developer" | "data-analyst" }) => {
 
     const stack = mode === 'developer' ? devStack : dataStack;
 
@@ -46,7 +48,7 @@ export const TechStack = ({ mode }: { mode: "developer" | "data-analyst" }) => {
                 <div className="flex flex-wrap justify-center gap-8 md:gap-12">
                     {stack.map((tech, idx) => (
                         <motion.div
-                            key={tech.name + mode} // Key changes on mode to trigger animation
+                            key={tech.name + mode}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -66,3 +68,4 @@ export const TechStack = ({ mode }: { mode: "developer" | "data-analyst" }) => {
         </section>
     );
 };
+

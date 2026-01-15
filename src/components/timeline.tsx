@@ -66,7 +66,7 @@ export const Timeline = ({ mode }: { mode: "developer" | "data-analyst" }) => {
             className="w-full bg-neutral-950 font-sans md:px-10 py-20 relative overflow-hidden"
             ref={containerRef}
         >
-            {/* Section Title */}
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ export const Timeline = ({ mode }: { mode: "developer" | "data-analyst" }) => {
             </motion.div>
 
             <div className="max-w-4xl mx-auto relative px-4">
-                {/* Vertical Line */}
+
                 <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-neutral-800 via-neutral-700 to-transparent ml-[-1px] md:ml-[0px]">
                     <motion.div
                         style={{ height: heightTransform, opacity: opacityTransform }}
@@ -110,7 +110,7 @@ const TimelineItem = ({ item, index, mode }: { item: any, index: number, mode: s
             className={`flex flex-col md:flex-row gap-8 mb-20 relative ${index % 2 === 0 ? "md:flex-row-reverse" : ""
                 }`}
         >
-            {/* Pulsing Dot */}
+
             <div className="absolute left-8 md:left-1/2 top-0 transform -translate-x-1/2 flex items-center justify-center z-10 w-8 h-8 rounded-full bg-neutral-950 border border-neutral-800 shadow-xl">
                 <motion.div
                     initial={{ scale: 0 }}
@@ -120,7 +120,6 @@ const TimelineItem = ({ item, index, mode }: { item: any, index: number, mode: s
                 />
             </div>
 
-            {/* Date/Period (Mobile: Top, Desktop: Side) */}
             <div className={`w-full md:w-1/2 flex ${index % 2 === 0 ? "md:justify-start" : "md:justify-end"} pl-16 md:pl-0 md:pr-12 md:text-right ${index % 2 === 0 ? "md:pr-0 md:pl-12 md:text-left" : ""}`}>
                 <motion.div
                     initial={{ opacity: 0, x: index % 2 === 0 ? 20 : -20 }}
@@ -135,7 +134,6 @@ const TimelineItem = ({ item, index, mode }: { item: any, index: number, mode: s
                 </motion.div>
             </div>
 
-            {/* Content Card */}
             <div className={`w-full md:w-1/2 flex ${index % 2 === 0 ? "md:justify-end" : "md:justify-start"} pl-16 md:pl-0`}>
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
@@ -143,7 +141,6 @@ const TimelineItem = ({ item, index, mode }: { item: any, index: number, mode: s
                     transition={{ duration: 0.5, delay: 0.3 }}
                     className={`relative w-full p-6 rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 border ${item.borderClass} hover:border-opacity-50 transition-colors shadow-2xl group`}
                 >
-                    {/* Glow Effect */}
                     <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-r ${item.glowColor} to-transparent`} />
 
                     <div className="relative z-10">

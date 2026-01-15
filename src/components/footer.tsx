@@ -27,7 +27,8 @@ export const Footer = () => {
                         <Linkedin className="w-5 h-5" />
                     </Link>
                     <Link
-                        href="mailto:contact@wallaceluis.com" // Placeholder or usage of phone
+                        href="mailto:contact@wallaceluis.com"
+
                         className="p-3 rounded-full bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 hover:border-neutral-600 transition-all text-white"
                     >
                         <Mail className="w-5 h-5" />

@@ -32,11 +32,12 @@ export interface Message {
 
 const MODELS = {
     PRIMARY: "gemini-2.5-flash-lite",
-    SECONDARY: "gemini-3-flash", // Smart Fallback
-    TERTIARY: "gemini-2.5-flash" // Backup
+    SECONDARY: "gemini-3-flash",
+    TERTIARY: "gemini-2.5-flash"
 };
 
-// Helper for local storage quota management
+
+
 const getQuotaUsage = () => {
     if (typeof window === 'undefined') return 0;
 
@@ -51,7 +52,7 @@ const getQuotaUsage = () => {
                 stats = parsed;
             }
         } catch (e) {
-            // reset if error
+
         }
     }
     return stats.count;
@@ -87,7 +88,7 @@ export function useGeminiChat() {
 
         const usageCount = getQuotaUsage();
 
-        // Choose initial model based on quota
+
         let activeModel = usageCount < 20 ? MODELS.PRIMARY : MODELS.SECONDARY;
 
         const userMessage: Message = {
@@ -123,17 +124,15 @@ export function useGeminiChat() {
             let responseText = "";
 
             try {
-                // First Attempt
+
                 console.log(`Attempting with ${activeModel} (Request #${usageCount + 1})`);
                 responseText = await attemptGeneration(activeModel);
             } catch (error: any) {
                 console.warn(`${activeModel} failed. Trying fallback...`, error);
 
-                // Smart Fallback Logic
-                // If primary failed, try secondary. If secondary failed, try tertiary.
-                // Note: If we started with Secondary (count > 20) and it failed, we go to Tertiary.
 
                 let nextModel = activeModel === MODELS.PRIMARY ? MODELS.SECONDARY : MODELS.TERTIARY;
+
 
                 if (activeModel === MODELS.SECONDARY) {
                     nextModel = MODELS.TERTIARY;
@@ -145,21 +144,23 @@ export function useGeminiChat() {
                 } catch (secondError: any) {
                     console.warn(`${nextModel} failed. Trying final backup...`, secondError);
 
-                    // If we haven't tried Tertiary yet (e.g. we went Primary -> Secondary -> Fail), try Tertiary.
+
                     if (nextModel !== MODELS.TERTIARY) {
                         try {
                             console.log(`Final backup attempt with ${MODELS.TERTIARY}`);
                             responseText = await attemptGeneration(MODELS.TERTIARY);
                         } catch (thirdError) {
-                            throw thirdError; // All failed
+                            throw thirdError;
+
                         }
                     } else {
-                        throw secondError; // We already tried Tertiary or equivalent logic led to failure
+                        throw secondError;
                     }
+
                 }
             }
 
-            // If successful
+
             incrementQuotaUsage();
 
             setMessages(prev => [...prev, {
@@ -172,9 +173,8 @@ export function useGeminiChat() {
         } catch (error: any) {
             console.error("All models failed:", error);
 
-            // Check if it's a quote error (429) or general failure
-            // Ideally we check error.status or error.message, but for safety we show the quota message as requested if it seems like a hard failure
             const errorMessage = "Cota diária da assistente excedida. Entre em contato diretamente pelo WhatsApp: (19) 98257-1877";
+
 
             setMessages(prev => [...prev, {
                 id: (Date.now() + 1).toString(),

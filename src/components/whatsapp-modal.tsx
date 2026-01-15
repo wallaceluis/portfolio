@@ -18,15 +18,14 @@ export default function WhatsAppModal() {
     const recognitionRef = useRef<any>(null);
     const retryCountRef = useRef(0);
 
-    // Audio Support Check on Mount
+
     useEffect(() => {
-        // 1. Check Secure Context (HTTPS or localhost)
         const isSecure = typeof window !== 'undefined' &&
             (window.location.protocol === 'https:' || window.location.hostname === 'localhost');
 
-        // 2. Check Browser Support
         const hasSpeechApi = typeof window !== 'undefined' &&
             ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window);
+
 
         if (isSecure && hasSpeechApi) {
             setIsAudioSupported(true);
@@ -41,18 +40,14 @@ export default function WhatsAppModal() {
         setIsListening(false);
 
         if (event.error === 'network') {
-            if (retryCountRef.current < 1) {
-                console.log("Attempting retry due to network error...");
-                retryCountRef.current += 1;
-                setTimeout(() => startListening(), 500);
-                return; // Don't show error yet
-            }
+
             setTempError(t('audioError'));
             setTimeout(() => setTempError(null), 3000);
         } else if (event.error === 'not-allowed') {
             setTempError("Microfone bloqueado.");
             setTimeout(() => setTempError(null), 3000);
-            setIsAudioSupported(false); // Disable mic if permission denied
+            setIsAudioSupported(false);
+
         } else {
             setTempError("Erro no áudio.");
             setTimeout(() => setTempError(null), 2000);
@@ -68,20 +63,22 @@ export default function WhatsAppModal() {
 
         setTempError(null);
         try {
-            // @ts-ignore
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+            const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
             const recognition = new SpeechRecognition();
             recognitionRef.current = recognition;
 
-            // Critical: Set Lang BEFORE start
             recognition.lang = language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'pt-BR';
+
+
             recognition.continuous = false;
             recognition.interimResults = false;
 
             recognition.onstart = () => {
                 setIsListening(true);
-                retryCountRef.current = 0; // Reset retry on success start
+                retryCountRef.current = 0;
             };
+
 
             recognition.onresult = (event: any) => {
                 const transcript = event.results[0][0].transcript;
@@ -162,10 +159,11 @@ export default function WhatsAppModal() {
                         exit={{ opacity: 0, y: 100 }}
                         className="fixed bottom-0 right-0 md:bottom-6 md:right-6 z-50 w-full md:w-[380px] h-full md:h-[600px] flex flex-col shadow-2xl overflow-hidden font-sans pointer-events-auto rounded-none md:rounded-2xl border border-gray-100"
                     >
-                        {/* Smartphone Frame Wrapper (simulated for desktop) */}
                         <div className="relative w-full h-full bg-[#E5DDD5] flex flex-col">
 
-                            {/* Header */}
+
+
+
                             <div className="bg-[#075E54] p-3 flex items-center justify-between text-white shadow-md z-10">
                                 <div className="flex items-center gap-3">
                                     <button onClick={() => setIsOpen(false)} className="md:hidden">
@@ -173,9 +171,8 @@ export default function WhatsAppModal() {
                                     </button>
                                     <div className="flex items-center gap-2">
                                         <div className="relative">
-                                            {/* Avatar Placeholder */}
                                             <div className="w-10 h-10 rounded-full bg-gray-300 overflow-hidden">
-                                                {/* Replace with actual image later */}
+
                                                 <div className="w-full h-full flex items-center justify-center bg-teal-800 font-bold">WL</div>
                                             </div>
                                             <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#075E54] rounded-full"></div>
@@ -193,7 +190,6 @@ export default function WhatsAppModal() {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4">
-                                    {/* Video Simulation */}
                                     <div className="relative group cursor-pointer">
                                         <Video size={20} className={isLoading ? "animate-pulse text-green-300" : ""} />
                                         {isLoading && (
@@ -209,11 +205,11 @@ export default function WhatsAppModal() {
                                 </div>
                             </div>
 
-                            {/* Chat Body */}
+
                             <div
                                 className="flex-1 overflow-y-auto p-4 flex flex-col gap-3 bg-[url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')] bg-repeat"
                             >
-                                {/* Initial Greeting */}
+
                                 <div className="self-center bg-[#DCF8C6] shadow-sm rounded-lg py-1 px-3 mb-4 text-xs text-gray-500">
                                     {new Date().toLocaleDateString()}
                                 </div>
@@ -229,8 +225,8 @@ export default function WhatsAppModal() {
                                     <div
                                         key={msg.id}
                                         className={`max-w-[80%] p-3 text-sm shadow-sm relative ${msg.role === 'user'
-                                                ? 'self-end bg-[#DCF8C6] rounded-tl-lg rounded-bl-lg rounded-br-lg text-gray-800' // WhatsApp Green User
-                                                : 'self-start bg-white rounded-tr-lg rounded-bl-lg rounded-br-lg text-gray-800' // White AI
+                                            ? 'self-end bg-[#DCF8C6] rounded-tl-lg rounded-bl-lg rounded-br-lg text-gray-800'
+                                            : 'self-start bg-white rounded-tr-lg rounded-bl-lg rounded-br-lg text-gray-800'
                                             }`}
                                     >
                                         {msg.text}
@@ -252,9 +248,8 @@ export default function WhatsAppModal() {
                                 <div ref={messagesEndRef} />
                             </div>
 
-                            {/* Input Area */}
                             <div className="p-2 bg-[#F0F0F0] flex flex-col gap-1 z-10">
-                                {/* Error Toast inside chat */}
+
                                 <AnimatePresence>
                                     {tempError && (
                                         <motion.div
@@ -281,7 +276,6 @@ export default function WhatsAppModal() {
                                         />
                                     </div>
 
-                                    {/* Send / Mic Button */}
                                     {inputText.trim() ? (
                                         <button
                                             onClick={handleSend}
@@ -294,22 +288,23 @@ export default function WhatsAppModal() {
                                             onClick={isListening ? stopListening : startListening}
                                             disabled={!isAudioSupported}
                                             className={`p-3 rounded-full text-white shadow-md transition-all duration-200 flex items-center justify-center ${!isAudioSupported
-                                                    ? "bg-gray-400 cursor-not-allowed"
-                                                    : isListening
-                                                        ? "bg-red-500 animate-pulse"
-                                                        : "bg-[#075E54]"
+                                                ? "bg-gray-400 cursor-not-allowed"
+                                                : isListening
+                                                    ? "bg-red-500 animate-pulse"
+                                                    : "bg-[#075E54]"
                                                 }`}
                                         >
                                             {!isAudioSupported ? <Keyboard size={20} /> : <Mic size={20} />}
                                         </button>
                                     )}
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
         </>
+
     );
 }
