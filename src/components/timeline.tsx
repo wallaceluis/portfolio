@@ -21,6 +21,7 @@ export const Timeline = ({ mode }: { mode: "developer" | "data-analyst" }) => {
             id: "multi360",
             icon: mode === 'developer' ? <Code className="w-6 h-6" /> : <BarChart className="w-6 h-6" />,
             color: mode === 'developer' ? "bg-blue-500" : "bg-emerald-500",
+            glowColor: mode === 'developer' ? "from-blue-500" : "from-emerald-500",
             textClass: mode === 'developer' ? "text-blue-400" : "text-emerald-400",
             borderClass: mode === 'developer' ? "border-blue-500/20" : "border-emerald-500/20",
             content: {
@@ -34,6 +35,7 @@ export const Timeline = ({ mode }: { mode: "developer" | "data-analyst" }) => {
             id: "vivo",
             icon: mode === 'developer' ? <Code className="w-6 h-6" /> : <BarChart className="w-6 h-6" />,
             color: mode === 'developer' ? "bg-blue-500" : "bg-emerald-500",
+            glowColor: mode === 'developer' ? "from-blue-500" : "from-emerald-500",
             textClass: mode === 'developer' ? "text-blue-400" : "text-emerald-400",
             borderClass: mode === 'developer' ? "border-blue-500/20" : "border-emerald-500/20",
             content: {
@@ -47,6 +49,7 @@ export const Timeline = ({ mode }: { mode: "developer" | "data-analyst" }) => {
             id: "education",
             icon: <GraduationCap className="w-6 h-6" />,
             color: "bg-purple-500",
+            glowColor: "from-purple-500",
             textClass: "text-purple-400",
             borderClass: "border-purple-500/20",
             content: {
@@ -141,7 +144,7 @@ const TimelineItem = ({ item, index, mode }: { item: any, index: number, mode: s
                     className={`relative w-full p-6 rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 border ${item.borderClass} hover:border-opacity-50 transition-colors shadow-2xl group`}
                 >
                     {/* Glow Effect */}
-                    <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-r ${item.color.replace('bg-', 'from-')} to-transparent`} />
+                    <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-r ${item.glowColor} to-transparent`} />
 
                     <div className="relative z-10">
                         <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium mb-4 ${item.textClass}`}>
