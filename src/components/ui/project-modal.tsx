@@ -50,10 +50,10 @@ export const ProjectModal = ({ isOpen, onClose, project, carouselClassName }: Pr
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        className="fixed inset-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:max-w-3xl h-full md:h-auto z-[101] p-4 md:p-0"
+                        className="fixed inset-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:max-w-2xl h-full md:h-auto z-[101] p-4 md:p-0"
                     >
                         <div className="bg-neutral-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl h-full md:max-h-[85vh] flex flex-col">
-                            <div className="relative w-full aspect-video md:aspect-[2/1] bg-neutral-800">
+                            <div className="relative w-full aspect-video md:aspect-[4/3] bg-neutral-800">
                                 <ImageCarousel images={project.images} alt={project.title} className={carouselClassName} interval={5000} />
                                 <button
                                     onClick={onClose}
