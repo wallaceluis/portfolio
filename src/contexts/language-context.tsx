@@ -38,9 +38,9 @@ const translations = {
                     title: "Integrações Inteligentes OpenAI",
                     desc: "Engenharia de triagem automática de currículos e chatbots assistentes para o Grupo Multi360."
                 },
-                backend: {
-                    title: "Sistemas Backend Escaláveis",
-                    desc: "Desenvolvi arquitetura de microsserviços usando Prisma ORM e Docker para alta disponibilidade."
+                coinstracker: {
+                    title: "Coins Tracker",
+                    desc: "Desenvolvi um sistema que ao consumir a API da coinscap faz conversões e calcula o valor de moedas em tempo real."
                 },
                 frontend: {
                     title: "Arquitetura Frontend Moderna",
@@ -129,9 +129,9 @@ const translations = {
                     title: "OpenAI Smart Integrations",
                     desc: "Engineered automated resume screening and chatbot assistants for Grupo Multi360."
                 },
-                backend: {
-                    title: "Scalable Backend Systems",
-                    desc: "Developed microservices architecture using Prisma ORM and Docker for high availability."
+                coinstracker: {
+                    title: "Coins Tracker",
+                    desc: "Developed a system that consumes the coinscap API to make conversions and calculate the value of coins in real time."
                 },
                 frontend: {
                     title: "Modern Frontend Architecture",
@@ -220,9 +220,9 @@ const translations = {
                     title: "Integraciones Inteligentes OpenAI",
                     desc: "Ingeniería de filtrado automático de currículums y chatbots asistentes para el Grupo Multi360."
                 },
-                backend: {
-                    title: "Sistemas Backend Escalables",
-                    desc: "Desarrollé arquitectura de microservicios usando Prisma ORM y Docker para alta disponibilidad."
+                coinstracker: {
+                    title: "Coins Tracker",
+                    desc: "Desarrollé un sistema que consume la coinscap API para hacer conversiones y calcular el valor de monedas en tiempo real."
                 },
                 frontend: {
                     title: "Arquitectura Frontend Moderna",
