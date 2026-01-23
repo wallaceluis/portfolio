@@ -2,8 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { Meteors } from "./ui/meteors";
-import { CircuitBackground } from "./ui/circuit-background";
-import { DataGridBackground } from "./ui/data-grid-background";
+import { HeroBackground } from "./hero-background";
 import { motion, AnimatePresence } from "framer-motion";
 
 
@@ -15,11 +14,7 @@ export const Hero = ({ mode }: { mode: "developer" | "data-analyst" }) => {
         <div className={`relative w-full h-[35rem] flex flex-col items-center justify-center overflow-hidden transition-colors duration-500 ${mode === 'developer' ? 'bg-slate-950' : 'bg-zinc-950'}`}>
 
             <div className="absolute inset-0 w-full h-full z-0">
-                {mode === 'developer' ? (
-                    <CircuitBackground />
-                ) : (
-                    <DataGridBackground />
-                )}
+                <HeroBackground mode={mode} />
 
                 <div className="absolute inset-0 bg-black/40 z-[1]" />
             </div>
