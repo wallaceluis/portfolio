@@ -2,10 +2,10 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { Code, BarChart, GraduationCap, Briefcase, Calendar } from "lucide-react";
+import { Code, GraduationCap, Calendar } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 
-export const Timeline = ({ mode }: { mode: "developer" | "data-analyst" }) => {
+export const Timeline = () => {
     const { t } = useLanguage();
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
@@ -18,31 +18,45 @@ export const Timeline = ({ mode }: { mode: "developer" | "data-analyst" }) => {
 
     const timelineData = [
         {
+            id: "dsmarketing",
+            icon: <Code className="w-6 h-6" />,
+            color: "bg-blue-500",
+            glowColor: "from-blue-500",
+            textClass: "text-blue-400",
+            borderClass: "border-blue-500/20",
+            content: {
+                period: t("timeline.dsmarketing.period"),
+                company: t("timeline.dsmarketing.company"),
+                title: t("timeline.dsmarketing.dev.title"),
+                desc: t("timeline.dsmarketing.dev.desc"),
+            }
+        },
+        {
             id: "multi360",
-            icon: mode === 'developer' ? <Code className="w-6 h-6" /> : <BarChart className="w-6 h-6" />,
-            color: mode === 'developer' ? "bg-blue-500" : "bg-emerald-500",
-            glowColor: mode === 'developer' ? "from-blue-500" : "from-emerald-500",
-            textClass: mode === 'developer' ? "text-blue-400" : "text-emerald-400",
-            borderClass: mode === 'developer' ? "border-blue-500/20" : "border-emerald-500/20",
+            icon: <Code className="w-6 h-6" />,
+            color: "bg-blue-500",
+            glowColor: "from-blue-500",
+            textClass: "text-blue-400",
+            borderClass: "border-blue-500/20",
             content: {
                 period: t("timeline.multi360.period"),
                 company: t("timeline.multi360.company"),
-                title: mode === 'developer' ? t("timeline.multi360.dev.title") : t("timeline.multi360.data.title"),
-                desc: mode === 'developer' ? t("timeline.multi360.dev.desc") : t("timeline.multi360.data.desc"),
+                title: t("timeline.multi360.dev.title"),
+                desc: t("timeline.multi360.dev.desc"),
             }
         },
         {
             id: "vivo",
-            icon: mode === 'developer' ? <Code className="w-6 h-6" /> : <BarChart className="w-6 h-6" />,
-            color: mode === 'developer' ? "bg-blue-500" : "bg-emerald-500",
-            glowColor: mode === 'developer' ? "from-blue-500" : "from-emerald-500",
-            textClass: mode === 'developer' ? "text-blue-400" : "text-emerald-400",
-            borderClass: mode === 'developer' ? "border-blue-500/20" : "border-emerald-500/20",
+            icon: <Code className="w-6 h-6" />,
+            color: "bg-blue-500",
+            glowColor: "from-blue-500",
+            textClass: "text-blue-400",
+            borderClass: "border-blue-500/20",
             content: {
                 period: t("timeline.vivo.period"),
                 company: t("timeline.vivo.company"),
-                title: mode === 'developer' ? t("timeline.vivo.dev.title") : t("timeline.vivo.data.title"),
-                desc: mode === 'developer' ? t("timeline.vivo.dev.desc") : t("timeline.vivo.data.desc"),
+                title: t("timeline.vivo.dev.title"),
+                desc: t("timeline.vivo.dev.desc"),
             }
         },
         {
@@ -73,13 +87,11 @@ export const Timeline = ({ mode }: { mode: "developer" | "data-analyst" }) => {
                 transition={{ duration: 0.5 }}
                 className="max-w-7xl mx-auto px-4 mb-16 text-center"
             >
-                <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-500">
+                <h2 className="text-3xl md:text-5xl font-bold leading-tight pb-2 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-500">
                     {t('timeline.sectionTitle')}
                 </h2>
                 <p className="text-neutral-400 mt-4 max-w-2xl mx-auto text-sm md:text-base">
-                    {mode === 'developer'
-                        ? t('timeline.sectionSubtitleDev')
-                        : t('timeline.sectionSubtitleData')}
+                    {t('timeline.sectionSubtitleDev')}
                 </p>
             </motion.div>
 
@@ -88,19 +100,19 @@ export const Timeline = ({ mode }: { mode: "developer" | "data-analyst" }) => {
                 <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-neutral-800 via-neutral-700 to-transparent ml-[-1px] md:ml-[0px]">
                     <motion.div
                         style={{ height: heightTransform, opacity: opacityTransform }}
-                        className={`absolute top-0 left-0 w-full bg-gradient-to-b from-transparent ${mode === 'developer' ? 'via-blue-500' : 'via-emerald-500'} to-transparent`}
+                        className="absolute top-0 left-0 w-full bg-gradient-to-b from-transparent via-blue-500 to-transparent"
                     />
                 </div>
 
                 {timelineData.map((item, index) => (
-                    <TimelineItem key={index} item={item} index={index} mode={mode} />
+                    <TimelineItem key={index} item={item} index={index} />
                 ))}
             </div>
         </section>
     );
 };
 
-const TimelineItem = ({ item, index, mode }: { item: any, index: number, mode: string }) => {
+const TimelineItem = ({ item, index }: { item: any, index: number }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 

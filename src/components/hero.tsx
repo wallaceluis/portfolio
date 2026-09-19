@@ -3,18 +3,18 @@ import React from "react";
 import Image from "next/image";
 import { Meteors } from "./ui/meteors";
 import { HeroBackground } from "./hero-background";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 
 import { useLanguage } from "@/contexts/language-context";
 
-export const Hero = ({ mode }: { mode: "developer" | "data-analyst" }) => {
+export const Hero = () => {
     const { t } = useLanguage();
     return (
-        <div className={`relative w-full h-[35rem] flex flex-col items-center justify-center overflow-hidden transition-colors duration-500 ${mode === 'developer' ? 'bg-slate-950' : 'bg-zinc-950'}`}>
+        <div className="relative w-full min-h-[42rem] h-auto flex flex-col items-center justify-center overflow-hidden transition-colors duration-500 py-16 bg-slate-950">
 
             <div className="absolute inset-0 w-full h-full z-0">
-                <HeroBackground mode={mode} />
+                <HeroBackground mode="developer" />
 
                 <div className="absolute inset-0 bg-black/40 z-[1]" />
             </div>
@@ -42,23 +42,18 @@ export const Hero = ({ mode }: { mode: "developer" | "data-analyst" }) => {
                     Wallace Luis
                 </motion.h1>
 
-                <div className="h-12 flex items-center justify-center overflow-hidden">
-                    <AnimatePresence mode="wait">
-                        <motion.p
-                            key={mode}
-                            initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
-                            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                            exit={{ opacity: 0, y: -40, filter: 'blur(10px)' }}
-                            transition={{ duration: 0.4, ease: "circOut" }}
-                            className={`text-xl md:text-3xl font-medium tracking-wide ${mode === 'developer' ? 'text-blue-400' : 'text-emerald-400'
-                                }`}
-                        >
-                            {mode === 'developer' ? "Full Stack Developer & IA Specialist" : "Data Analyst & BI Specialist"}
-                        </motion.p>
-                    </AnimatePresence>
+                <div className="min-h-[3rem] flex items-center justify-center overflow-hidden px-2">
+                    <motion.p
+                        initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                        transition={{ duration: 0.4, ease: "circOut" }}
+                        className="text-xl md:text-3xl font-medium tracking-wide text-center text-balance text-blue-400"
+                    >
+                        {t('hero.roleDev')}
+                    </motion.p>
                 </div>
 
-                <p className="mt-8 mb-8 text-neutral-400 max-w-lg mx-auto text-base">
+                <p className="mt-6 mb-8 text-neutral-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed text-pretty">
                     {t('hero.description')}
                 </p>
             </div>
