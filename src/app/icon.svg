@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <!-- Gradiente do Fundo (Slate escuro) -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Gradiente do Texto (Ciano para Roxo) -->
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2dd4bf" /> <!-- Teal/Ciano -->
+      <stop offset="100%" stop-color="#8b5cf6" /> <!-- Roxo -->
+    </linearGradient>
+
+    <!-- Efeito de Sombra para o Texto -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <!-- Fundo com gradiente e rebordo subtil -->
+  <rect width="96" height="96" x="2" y="2" rx="22" fill="url(#bg-grad)" stroke="#334155" stroke-width="2"/>
+  
+  <!-- Texto <W/L> com gradiente e sombra -->
+  <text 
+    x="50%" 
+    y="54%" 
+    dominant-baseline="middle" 
+    text-anchor="middle" 
+    font-family="monospace, sans-serif" 
+    font-weight="bold" 
+    font-size="32" 
+    fill="url(#text-grad)"
+    filter="url(#shadow)"
+  >
+    &lt;W/L&gt;
+  </text>
+</svg>
