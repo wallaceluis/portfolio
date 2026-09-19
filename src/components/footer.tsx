@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { Github, Linkedin, Mail, Instagram, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 
 export const Footer = () => {
@@ -29,15 +29,44 @@ export const Footer = () => {
                     <Link
                         href="mailto:contact@wallaceluis.com"
 
+                        aria-label="Email"
                         className="p-3 rounded-full bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 hover:border-neutral-600 transition-all text-white"
                     >
                         <Mail className="w-5 h-5" />
                     </Link>
+                    <Link
+                        href="https://wa.me/5519982571877?text=Ol%C3%A1%20Wallace!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar."
+                        target="_blank"
+                        aria-label="WhatsApp"
+                        className="p-3 rounded-full bg-neutral-900 border border-neutral-800 hover:bg-[#25D366] hover:border-[#25D366] transition-all text-white"
+                    >
+                        <MessageCircle className="w-5 h-5" />
+                    </Link>
+                    <Link
+                        href="https://instagram.com/wallaceluis_"
+                        target="_blank"
+                        aria-label="Instagram"
+                        className="p-3 rounded-full bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 hover:border-neutral-600 transition-all text-white"
+                    >
+                        <Instagram className="w-5 h-5" />
+                    </Link>
                 </div>
 
-                <div className="flex items-center gap-2 text-neutral-500 mt-4">
-                    <Phone className="w-4 h-4" />
-                    <span>(19) 98257-1877</span>
+                <div className="flex flex-col items-center gap-1 text-neutral-500 mt-4 text-sm">
+                    <Link
+                        href="https://wa.me/5519982571877"
+                        target="_blank"
+                        className="hover:text-white transition-colors"
+                    >
+                        (19) 98257-1877
+                    </Link>
+                    <Link
+                        href="https://instagram.com/wallaceluis_"
+                        target="_blank"
+                        className="hover:text-white transition-colors"
+                    >
+                        @wallaceluis_
+                    </Link>
                 </div>
 
                 <p className="text-sm text-neutral-600 mt-8">
