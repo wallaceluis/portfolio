@@ -8,8 +8,11 @@ import LanguageSelector from "@/components/language-selector";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Wallace Luis | Full Stack Developer & Data Analyst",
-  description: "Portfólio de Wallace Luis - Especialista em Desenvolvimento Full Stack e Análise de Dados.",
+  title: "Wallace Luis | Desenvolvedor Full Stack Pleno",
+  description: "Portfólio de Wallace Luis - Desenvolvedor Full Stack Pleno especializado em aplicações web, APIs, microsserviços e integrações com IA.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

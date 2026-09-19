@@ -3,10 +3,10 @@
 import { GridScan } from "./GridScan";
 
 interface HeroBackgroundProps {
-    mode: "developer" | "data-analyst";
+    mode?: "developer" | "data-analyst";
 }
 
-export const HeroBackground = ({ mode }: HeroBackgroundProps) => {
+export const HeroBackground = ({ mode = "developer" }: HeroBackgroundProps) => {
     // Colors configuration
     // Developer: Blue (Tailwind blue-600 lines, blue-400 scan)
     // Data Analyst: Green (Tailwind emerald-600 lines, emerald-400 scan)

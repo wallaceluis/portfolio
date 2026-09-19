@@ -21,7 +21,9 @@ const translations = {
         typing: "Digitando...",
         audioError: "Erro no áudio. Digite sua mensagem.",
         hero: {
-            description: "Construindo o futuro com código e dados. Morando em Campinas-SP, transformando ideias em soluções escaláveis."
+            roleDev: "Desenvolvedor Full Stack Pleno",
+            roleData: "Analista de Dados & Especialista em BI",
+            description: "Desenvolvedor Full Stack com experiência em aplicações web, APIs e integrações. Forte atuação no ecossistema JavaScript/TypeScript, com experiência no gerenciamento de monorepos, arquitetura de microsserviços e infraestrutura multi-cloud. Atuação no desenvolvimento e manutenção de produtos escaláveis, integrando IA conversacional, APIs de comunicação multicanal e processamento assíncrono. Produtividade acelerada pelo uso contínuo de ferramentas de desenvolvimento assistido por IA (Cursor, Claude Code, Codex e integrações MCP)."
         },
         footer: {
             title: "Vamos construir algo incrível juntos",
@@ -70,32 +72,44 @@ const translations = {
             sectionTitle: "Trajetória Profissional",
             sectionSubtitleDev: "Construindo soluções escaláveis e integrando Inteligência Artificial.",
             sectionSubtitleData: "Transformando grandes volumes de dados em decisões estratégicas.",
-            multi360: {
-                period: "04/2025 - Atual",
-                company: "Grupo Multi360",
+            dsmarketing: {
+                period: "01/2026 - Atual",
+                company: "ds.marketing",
                 dev: {
-                    title: "Especialista em IA & Dev Full Stack",
-                    desc: "Liderança técnica no projeto MultiOne Talents. Desenvolvimento de APIs com Nest.js, interfaces com Next.js e integração de LLMs (OpenAI) para fluxos de atendimento automatizados."
+                    title: "Desenvolvedor Full Stack Pleno",
+                    desc: "Manutenção de APIs e ecossistema distribuído em microsserviços e monorepo (Nx, pnpm) com Node.js e Bun. Criação de estúdio para geração de encartes com Fabric.js. App mobile nativo (React Native bare) com IA conversacional. Integração de IA para texto, áudio e vídeo (OpenAI, Gemini Live, ElevenLabs). Mensageria e ads (WhatsApp, Meta API). Infra Cloud/DevOps (AWS, GCP, Terraform)."
                 },
                 data: {
-                    title: "Especialista em IA & Assistente de Dados",
-                    desc: "Criação de dashboards estratégicos para controle de SLA e marketing. Análise de performance utilizando SQL, Power BI e Looker Studio, além de automações com Python e Make."
+                    title: "Desenvolvedor Full Stack Pleno",
+                    desc: "Manutenção de APIs e ecossistema distribuído em microsserviços e monorepo (Nx, pnpm). Backend com Node.js e Bun, mensageria (WhatsApp, Meta API) e infra Cloud (AWS, GCP, Terraform), além de integrações de IA para texto, áudio e vídeo."
+                }
+            },
+            multi360: {
+                period: "04/2025 - 01/2026",
+                company: "Grupo Multi360",
+                dev: {
+                    title: "Especialista em Desenvolvimento de IA e Automação",
+                    desc: "Desenvolvimento full stack com React.js, Next.js, TypeScript e Nest.js. Liderança técnica no sistema de recrutamento. Soluções de IA com OpenAI API, automações com Python e Make e gerenciamento de servidores Ubuntu/Docker."
+                },
+                data: {
+                    title: "Especialista em Desenvolvimento de IA e Automação",
+                    desc: "Criação de dashboards estratégicos para controle de SLA e marketing. Análise de performance com SQL, Power BI e Looker Studio, além de automações com Python e Make e gestão de servidores Ubuntu/Docker."
                 }
             },
             vivo: {
                 period: "08/2024 - 02/2025",
                 company: "Telefônica Brasil (VIVO)",
                 dev: {
-                    title: "Estagiário de Automação e Dados",
-                    desc: "Desenvolvimento de scripts em Python e SQL para automação de processos internos e suporte à infraestrutura de dados."
+                    title: "Estagiário em Análise de Dados",
+                    desc: "Automação de análises e processos utilizando Python e SQL. Desenvolvimento de dashboards usando Power BI."
                 },
                 data: {
                     title: "Estagiário em Análise de Dados",
-                    desc: "Análise de grandes volumes de dados corporativos, market share e vendas. Desenvolvimento de dashboards no Power BI para suporte à tomada de decisão da diretoria."
+                    desc: "Automação de análises e processos utilizando Python e SQL. Desenvolvimento de dashboards usando Power BI para suporte à tomada de decisão."
                 }
             },
             education: {
-                period: "01/2024 - 06/2026",
+                period: "Previsão de conclusão: 08/2027",
                 institution: "UNICESUMAR",
                 title: "Análise e Desenvolvimento de Sistemas",
                 desc: "Foco em engenharia de software, estruturas de dados e desenvolvimento de aplicações modernas."
@@ -112,7 +126,9 @@ const translations = {
         typing: "Typing...",
         audioError: "Audio error. Please type.",
         hero: {
-            description: "Building the future with code and data. Based in Campinas-SP, transforming ideas into scalable solutions."
+            roleDev: "Mid-Level Full Stack Developer",
+            roleData: "Data Analyst & BI Specialist",
+            description: "Full Stack Developer with experience in web applications, APIs and integrations. Strong background in the JavaScript/TypeScript ecosystem, managing monorepos, microservices architecture and multi-cloud infrastructure. Development and maintenance of scalable products, integrating conversational AI, multichannel communication APIs and async processing. Productivity boosted by continuous use of AI-assisted development tools (Cursor, Claude Code, Codex and MCP integrations)."
         },
         footer: {
             title: "Let's build something amazing together",
@@ -161,32 +177,44 @@ const translations = {
             sectionTitle: "Professional Trajectory",
             sectionSubtitleDev: "Building scalable solutions and integrating Artificial Intelligence.",
             sectionSubtitleData: "Transforming large volumes of data into strategic decisions.",
-            multi360: {
-                period: "04/2025 - Present",
-                company: "Multi360 Group",
+            dsmarketing: {
+                period: "01/2026 - Present",
+                company: "ds.marketing",
                 dev: {
-                    title: "AI Specialist & Full Stack Dev",
-                    desc: "Technical leadership on the MultiOne Talents project. API development with Nest.js, interfaces with Next.js, and LLM (OpenAI) integration for automated service flows."
+                    title: "Mid-Level Full Stack Developer",
+                    desc: "Maintenance of APIs and distributed microservices ecosystem in a monorepo (Nx, pnpm) with Node.js and Bun. Flyer-studio builder with Fabric.js. Native mobile app (React Native bare) with conversational AI. AI integrations for text, audio and video (OpenAI, Gemini Live, ElevenLabs). Messaging and ads (WhatsApp, Meta API). Cloud/DevOps infra (AWS, GCP, Terraform)."
                 },
                 data: {
-                    title: "AI Specialist & Data Assistant",
-                    desc: "Creation of strategic dashboards for SLA and marketing control. Performance analysis using SQL, Power BI, and Looker Studio, along with automation via Python and Make."
+                    title: "Mid-Level Full Stack Developer",
+                    desc: "Maintenance of APIs and distributed microservices in a monorepo (Nx, pnpm). Backend with Node.js and Bun, messaging (WhatsApp, Meta API) and Cloud infra (AWS, GCP, Terraform), plus AI integrations for text, audio and video."
+                }
+            },
+            multi360: {
+                period: "04/2025 - 01/2026",
+                company: "Multi360 Group",
+                dev: {
+                    title: "AI Development & Automation Specialist",
+                    desc: "Full stack development with React.js, Next.js, TypeScript and Nest.js. Technical leadership on the recruitment system. AI solutions with OpenAI API, automations with Python and Make, and Ubuntu/Docker server management."
+                },
+                data: {
+                    title: "AI Development & Automation Specialist",
+                    desc: "Creation of strategic dashboards for SLA and marketing control. Performance analysis using SQL, Power BI and Looker Studio, along with automation via Python and Make and Ubuntu/Docker management."
                 }
             },
             vivo: {
                 period: "08/2024 - 02/2025",
                 company: "Telefônica Brasil (VIVO)",
                 dev: {
-                    title: "Automation and Data Intern",
-                    desc: "Development of Python and SQL scripts for internal process automation and data infrastructure support."
+                    title: "Data Analysis Intern",
+                    desc: "Automation of analyses and processes using Python and SQL. Dashboard development with Power BI."
                 },
                 data: {
                     title: "Data Analysis Intern",
-                    desc: "Development of strategic dashboards for the board of directors. Analysis of sales, market share, and large corporate data volumes."
+                    desc: "Automation of analyses and processes using Python and SQL. Power BI dashboard development to support decision-making."
                 }
             },
             education: {
-                period: "01/2024 - 06/2026",
+                period: "Expected graduation: 08/2027",
                 institution: "UNICESUMAR",
                 title: "Analysis and Systems Development",
                 desc: "Focus on software engineering foundations, data structures, and modern application development."
@@ -203,7 +231,9 @@ const translations = {
         typing: "Escribiendo...",
         audioError: "Error de audio. Por favor escriba.",
         hero: {
-            description: "Construyendo el futuro con código y datos. Con sede en Campinas-SP, transformando ideas en soluciones escalables."
+            roleDev: "Desarrollador Full Stack Pleno",
+            roleData: "Analista de Datos & Especialista en BI",
+            description: "Desarrollador Full Stack con experiencia en aplicaciones web, APIs e integraciones. Sólida actuación en el ecosistema JavaScript/TypeScript, con experiencia en gestión de monorepos, arquitectura de microservicios e infraestructura multi-cloud. Desarrollo y mantenimiento de productos escalables, integrando IA conversacional, APIs de comunicación multicanal y procesamiento asíncrono. Productividad acelerada por el uso continuo de herramientas de desarrollo asistido por IA (Cursor, Claude Code, Codex e integraciones MCP)."
         },
         footer: {
             title: "Construyamos algo increíble juntos",
@@ -252,32 +282,44 @@ const translations = {
             sectionTitle: "Trayectoria Profesional",
             sectionSubtitleDev: "Construyendo soluciones escalables e integrando Inteligencia Artificial.",
             sectionSubtitleData: "Transformando grandes volúmenes de datos en decisiones estratégicas.",
-            multi360: {
-                period: "04/2025 - Actualidad",
-                company: "Grupo Multi360",
+            dsmarketing: {
+                period: "01/2026 - Actualidad",
+                company: "ds.marketing",
                 dev: {
-                    title: "Especialista en IA & Dev Full Stack",
-                    desc: "Liderazgo técnico en el proyecto MultiOne Talents. Desarrollo de APIs con Nest.js, interfaces con Next.js e integración de LLMs (OpenAI) para flujos de atención automatizados."
+                    title: "Desarrollador Full Stack Pleno",
+                    desc: "Mantenimiento de APIs y ecosistema distribuido de microservicios en monorepo (Nx, pnpm) con Node.js y Bun. Estudio para generación de folletos con Fabric.js. App móvil nativa (React Native bare) con IA conversacional. Integración de IA para texto, audio y video (OpenAI, Gemini Live, ElevenLabs). Mensajería y ads (WhatsApp, Meta API). Infra Cloud/DevOps (AWS, GCP, Terraform)."
                 },
                 data: {
-                    title: "Especialista en IA & Asistente de Datos",
-                    desc: "Creación de tableros estratégicos para control de SLA y marketing. Análisis de rendimiento utilizando SQL, Power BI y Looker Studio, además de automatizaciones con Python y Make."
+                    title: "Desarrollador Full Stack Pleno",
+                    desc: "Mantenimiento de APIs y microservicios en monorepo (Nx, pnpm). Backend con Node.js y Bun, mensajería (WhatsApp, Meta API) e infra Cloud (AWS, GCP, Terraform), además de integraciones de IA."
+                }
+            },
+            multi360: {
+                period: "04/2025 - 01/2026",
+                company: "Grupo Multi360",
+                dev: {
+                    title: "Especialista en Desarrollo de IA y Automatización",
+                    desc: "Desarrollo full stack con React.js, Next.js, TypeScript y Nest.js. Liderazgo técnico en el sistema de reclutamiento. Soluciones de IA con OpenAI API, automatizaciones con Python y Make y gestión de servidores Ubuntu/Docker."
+                },
+                data: {
+                    title: "Especialista en Desarrollo de IA y Automatización",
+                    desc: "Creación de tableros estratégicos para control de SLA y marketing. Análisis de rendimiento con SQL, Power BI y Looker Studio, además de automatizaciones con Python y Make."
                 }
             },
             vivo: {
                 period: "08/2024 - 02/2025",
                 company: "Telefônica Brasil (VIVO)",
                 dev: {
-                    title: "Pasante de Automatización y Datos",
-                    desc: "Desarrollo de scripts en Python y SQL para la automatización de procesos internos y soporte a la infraestructura de datos."
+                    title: "Pasante de Análisis de Datos",
+                    desc: "Automatización de análisis y procesos con Python y SQL. Desarrollo de tableros en Power BI."
                 },
                 data: {
                     title: "Pasante de Análisis de Datos",
-                    desc: "Desarrollo de tableros estratégicos para la dirección. Análisis de ventas, cuota de mercado y grandes volúmenes de datos corporativos."
+                    desc: "Automatización de análisis y procesos con Python y SQL. Desarrollo de tableros en Power BI para apoyo a la toma de decisiones."
                 }
             },
             education: {
-                period: "01/2024 - 06/2026",
+                period: "Previsión de conclusión: 08/2027",
                 institution: "UNICESUMAR",
                 title: "Análisis y Desarrollo de Sistemas",
                 desc: "Enfoque en ingeniería de software, estructuras de datos y desarrollo de aplicaciones modernas."
