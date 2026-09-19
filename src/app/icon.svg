@@ -1,38 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
-    <!-- Gradiente do Fundo (Slate escuro) -->
-    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#020617" />
+    <!-- Fundo premium super escuro -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827" /> <!-- Gray 900 -->
+      <stop offset="100%" stop-color="#030712" /> <!-- Gray 950 -->
     </linearGradient>
 
-    <!-- Gradiente do Texto (Ciano para Roxo) -->
-    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2dd4bf" /> <!-- Teal/Ciano -->
-      <stop offset="100%" stop-color="#8b5cf6" /> <!-- Roxo -->
+    <!-- Gradiente do W vibrante (Ciano -> Índigo -> Rosa) -->
+    <linearGradient id="w-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" /> 
+      <stop offset="50%" stop-color="#6366f1" /> 
+      <stop offset="100%" stop-color="#ec4899" /> 
     </linearGradient>
 
-    <!-- Efeito de Sombra para o Texto -->
+    <!-- Sombra densa para o W saltar do fundo -->
     <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.8"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.8"/>
     </filter>
   </defs>
 
-  <!-- Fundo com gradiente e rebordo subtil -->
-  <rect width="96" height="96" x="2" y="2" rx="22" fill="url(#bg-grad)" stroke="#334155" stroke-width="2"/>
+  <!-- Base -->
+  <rect width="100" height="100" rx="24" fill="url(#bg)"/>
   
-  <!-- Texto <W/L> com gradiente e sombra -->
+  <!-- Borda muito subtil para dar aquele acabamento de vidro/app -->
+  <rect width="98" height="98" x="1" y="1" rx="23" fill="none" stroke="#1f2937" stroke-width="2"/>
+
+  <!-- O "W" Gigante -->
   <text 
     x="50%" 
     y="54%" 
     dominant-baseline="middle" 
     text-anchor="middle" 
-    font-family="monospace, sans-serif" 
-    font-weight="bold" 
-    font-size="32" 
-    fill="url(#text-grad)"
+    font-family="system-ui, -apple-system, sans-serif" 
+    font-weight="900" 
+    font-size="68" 
+    fill="url(#w-grad)"
     filter="url(#shadow)"
   >
-    &lt;W/L&gt;
+    W
   </text>
 </svg>
