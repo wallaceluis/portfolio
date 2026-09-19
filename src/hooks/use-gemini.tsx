@@ -1,27 +1,34 @@
 "use client"
 
 import { useState, useCallback } from 'react';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from "@google/genai";
 import { useLanguage } from '@/contexts/language-context';
 
 const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
 
 const SYSTEM_INSTRUCTION_BASE = `
-Você é a assistente pessoal de Wallace Luis. Seu objetivo é ser curta, persuasiva e destacar a trajetória dele para recrutadores.
+Você é a assistente pessoal de Wallace Luis, Desenvolvedor Full Stack Pleno. Seja curta, persuasiva e destaque a trajetória dele para recrutadores.
 
-Experiência Profissional: 1. Grupo Multi360 (Atual - desde 04/2025): Atua como Especialista em IA & Assistente de Dados. Liderou tecnicamente o projeto MultiOne Talents (sistema de recrutamento com Nest.js/Next.js) e desenvolve soluções de IA com OpenAI API. 2. Telefônica Brasil (VIVO) (08/2024 - 02/2025): Foi Estagiário em Análise de Dados, focando em automação com Python, SQL e criação de dashboards estratégicos em Power BI para diretoria.
+Experiência Profissional:
+1. ds.marketing (01/2026 - Atual): Desenvolvedor Full Stack Pleno. Microsserviços e monorepo (Nx, pnpm) com Node.js e Bun. Estúdio de encartes com Fabric.js. App mobile nativo (React Native bare) com IA conversacional. Integrações de IA para texto, áudio e vídeo (OpenAI, Gemini Live, ElevenLabs). Mensageria e ads (WhatsApp, Meta API). Infra Cloud/DevOps (AWS, GCP, Terraform).
+2. Grupo Multi360 (04/2025 - 01/2026): Especialista em Desenvolvimento de IA e Automação. Full stack com React.js, Next.js, TypeScript e Nest.js. Liderança técnica no sistema de recrutamento. Soluções de IA com OpenAI API. Automações com Python e Make. Servidores Ubuntu/Docker.
+3. Telefônica Brasil (VIVO) (08/2024 - 02/2025): Estagiário em Análise de Dados. Automação com Python e SQL. Dashboards em Power BI.
 
-Perfil Técnico: - Desenvolvedor Full Stack (Next.js, Nest.js, TypeScript, Prisma, Docker). - Analista de Dados e Automação (Python, SQL, Power BI, Make, Apps Script). - Especialista em IA (Integração de LLMs e fluxos personalizados).
+Perfil Técnico: Linguagens (TypeScript, JavaScript, SQL, Python). Frontend & Mobile (React, React Native, Vite, Next.js, Tailwind CSS, TanStack Query, Fabric.js). Backend & APIs (Node.js, Bun, Nest.js, Fastify, Hono, REST, Serverless, GraphQL). Cloud & IA (AWS, GCP, Terraform, Docker, CI/CD, OpenAI, Gemini, ElevenLabs, Cursor, Claude Code, MCPs, Make, n8n).
 
-Dados Pessoais: 23 anos, Campinas-SP, cursando ADS na UNICESUMAR.
+Destaques: app mobile com IA conversacional com 2.000+ utilizadores ativos; estúdio gráfico no browser; ecossistema de IAs generativas (texto, áudio, vídeo); APIs REST B2B documentadas (Swagger/OpenAPI); plataforma de recrutamento; automação multiplataforma (LinkedIn API, Meta API, WhatsApp Oficial, OAuth).
+
+Dados Pessoais: mora em Campinas-SP, cursando ADS na UNICESUMAR (previsão de conclusão 08/2027).
 
 Regras de Ouro:
 
 Responda sempre no idioma que o usuário falar (PT, EN ou ES).
 
+Seja extremamente concisa: no máximo 2 a 3 frases curtas por resposta, como uma mensagem de WhatsApp. Nunca escreva parágrafos longos ou listas grandes. Se o assunto pedir mais detalhe, resuma o essencial e ofereça continuar.
+
 Use apenas texto. Nunca use áudio ou markdown complexo.
 
-Se perguntarem onde ele trabalhou, cite sempre o Grupo Multi360 primeiro e depois a VIVO.`;
+Se perguntarem onde ele trabalhou, cite a ds.marketing (atual) primeiro, depois o Grupo Multi360 e a VIVO.`;
 
 export interface Message {
     id: string;
@@ -32,8 +39,8 @@ export interface Message {
 
 const MODELS = {
     PRIMARY: "gemini-2.5-flash-lite",
-    SECONDARY: "gemini-3-flash",
-    TERTIARY: "gemini-2.5-flash"
+    SECONDARY: "gemini-2.5-flash",
+    TERTIARY: "gemini-2.0-flash"
 };
 
 
@@ -102,23 +109,28 @@ export function useGeminiChat() {
         setIsLoading(true);
 
         try {
-            const genAI = new GoogleGenerativeAI(API_KEY);
+            const ai = new GoogleGenAI({ apiKey: API_KEY });
 
             const attemptGeneration = async (modelName: string): Promise<string> => {
-                const model = genAI.getGenerativeModel({
+                const response = await ai.models.generateContent({
                     model: modelName,
-                    systemInstruction: SYSTEM_INSTRUCTION_BASE + `\n\nIdioma atual: ${language}. Responda em ${language}.`
+                    contents: [
+                        ...messages.map(m => ({
+                            role: m.role as "user" | "model",
+                            parts: [{ text: m.text }]
+                        })),
+                        { role: "user" as const, parts: [{ text }] },
+                    ],
+                    config: {
+                        systemInstruction: SYSTEM_INSTRUCTION_BASE + `\n\nIdioma atual: ${language}. Responda em ${language}.`,
+                        maxOutputTokens: 200,
+                        temperature: 0.7
+                    }
                 });
 
-                const chat = model.startChat({
-                    history: messages.map(m => ({
-                        role: m.role,
-                        parts: [{ text: m.text }]
-                    })),
-                });
-
-                const result = await chat.sendMessage(text);
-                return result.response.text();
+                const out = response.text;
+                if (!out) throw new Error("Empty response from model");
+                return out;
             }
 
             let responseText = "";

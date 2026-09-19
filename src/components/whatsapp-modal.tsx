@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Mic, X, Video, Phone, MessageCircle, AlertCircle, Keyboard } from 'lucide-react';
+import { Send, Mic, X, Phone, MessageCircle, AlertCircle, Keyboard } from 'lucide-react';
 import { useGeminiChat } from '@/hooks/use-gemini';
 import { useLanguage } from '@/contexts/language-context';
 
@@ -189,14 +189,20 @@ export default function WhatsAppModal() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-4">
-                                    <div className="relative group cursor-pointer">
-                                        <Video size={20} className={isLoading ? "animate-pulse text-green-300" : ""} />
+                                <div className="flex items-center gap-3">
+                                    <a
+                                        href="https://wa.me/5519982571877?text=Ol%C3%A1%20Wallace!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar."
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="relative flex items-center gap-1.5 bg-[#25D366] hover:bg-[#128C7E] text-white text-xs font-semibold px-3 py-1.5 rounded-full transition-colors"
+                                        aria-label="Falar com Wallace no WhatsApp"
+                                    >
+                                        <Phone size={14} />
+                                        <span>WhatsApp</span>
                                         {isLoading && (
                                             <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-ping"></span>
                                         )}
-                                    </div>
-                                    <Phone size={20} />
+                                    </a>
                                     <div className="hidden md:block">
                                         <button onClick={() => setIsOpen(false)}>
                                             <X size={20} />
