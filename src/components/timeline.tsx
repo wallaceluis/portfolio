@@ -77,7 +77,9 @@ export const Timeline = () => {
 
     return (
         <section
-            className="w-full bg-neutral-900 font-sans md:px-10 py-20 relative overflow-hidden"
+            id="trajetoria"
+            aria-labelledby="trajetoria-heading"
+            className="w-full bg-neutral-900 font-sans md:px-10 py-20 relative overflow-hidden scroll-mt-24"
             ref={containerRef}
         >
             <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-black to-transparent pointer-events-none" aria-hidden="true" />
@@ -88,7 +90,7 @@ export const Timeline = () => {
                 transition={{ duration: 0.5 }}
                 className="max-w-7xl mx-auto px-4 mb-16 text-center"
             >
-                <h2 className="text-3xl md:text-5xl font-bold leading-tight pb-2 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-500">
+                <h2 id="trajetoria-heading" className="text-3xl md:text-5xl font-bold leading-tight pb-2 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-500">
                     {t('timeline.sectionTitle')}
                 </h2>
                 <p className="text-neutral-400 mt-4 max-w-2xl mx-auto text-sm md:text-base">

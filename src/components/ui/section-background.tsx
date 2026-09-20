@@ -7,12 +7,14 @@ import React from "react";
  * a mesma linguagem do hero. O conteúdo da secção pinta por cima.
  */
 export const SectionBackground = ({
-    glowA = "bg-blue-600/10",
-    glowB = "bg-purple-600/10",
+    glowA = "bg-blue-600/20",
+    glowB = "bg-cyan-500/20",
+    glowC = "bg-purple-600/20",
     vignette = "bg-black",
 }: {
     glowA?: string;
     glowB?: string;
+    glowC?: string;
     /** Cor da vinheta — deve acompanhar o bg da secção para não o esconder */
     vignette?: string;
 }) => (
@@ -23,6 +25,9 @@ export const SectionBackground = ({
         />
         <div
             className={`absolute -bottom-40 -left-24 w-[28rem] h-[28rem] rounded-full blur-3xl ${glowB}`}
+        />
+        <div
+            className={`absolute top-1/4 -right-24 w-[26rem] h-[26rem] rounded-full blur-3xl ${glowC}`}
         />
         <div className={`absolute inset-0 ${vignette} [mask-image:radial-gradient(ellipse_at_center,transparent_30%,black)]`} />
     </div>
