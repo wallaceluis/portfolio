@@ -11,6 +11,7 @@ import {
 import { motion } from "framer-motion";
 
 import { useLanguage } from "@/contexts/language-context";
+import { SectionBackground } from "./ui/section-background";
 
 /* ------------------------------------------------------------------ */
 /*  Destaques Técnicos & Impacto — conteúdo trilíngue                  */
@@ -196,15 +197,17 @@ export const Experience = () => {
     }));
 
     return (
-        <section aria-labelledby="highlights-heading" className="py-20 bg-neutral-950 relative z-20">
-            <div className="max-w-7xl mx-auto px-4">
+        <section aria-labelledby="highlights-heading" className="py-20 bg-black relative z-20 overflow-hidden">
+            <SectionBackground />
+            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-neutral-900 to-transparent pointer-events-none" aria-hidden="true" />
+            <div className="relative max-w-7xl mx-auto px-4">
                 <h2
                     id="highlights-heading"
-                    className="text-3xl md:text-4xl font-bold mb-4 text-white text-balance"
+                    className="text-3xl md:text-4xl font-bold mb-4 text-white text-center text-balance"
                 >
                     {content.sectionTitle}
                 </h2>
-                <p className="text-neutral-400 max-w-2xl text-sm md:text-base mb-12 leading-relaxed">
+                <p className="text-neutral-400 max-w-2xl mx-auto text-center text-sm md:text-base mb-12 leading-relaxed">
                     {content.subtitle}
                 </p>
 

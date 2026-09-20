@@ -77,9 +77,10 @@ export const Timeline = () => {
 
     return (
         <section
-            className="w-full bg-neutral-950 font-sans md:px-10 py-20 relative overflow-hidden"
+            className="w-full bg-neutral-900 font-sans md:px-10 py-20 relative overflow-hidden"
             ref={containerRef}
         >
+            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-black to-transparent pointer-events-none" aria-hidden="true" />
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}

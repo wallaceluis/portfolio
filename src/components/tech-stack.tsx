@@ -98,8 +98,9 @@ const devCategories: Category[] = [languages, frontendMobile, backendApis, infra
 
 export const TechStack = () => {
     return (
-        <section className="py-20 bg-black border-t border-neutral-900">
-            <div className="max-w-7xl mx-auto px-4">
+        <section className="py-20 bg-neutral-900 relative overflow-hidden">
+            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-slate-950 to-transparent pointer-events-none" aria-hidden="true" />
+            <div className="relative max-w-7xl mx-auto px-4">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white text-center">
                     Tech Stack
                 </h2>
