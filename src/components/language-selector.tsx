@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Globe, ChevronDown, Check } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
-export default function LanguageSelector() {
+export default function LanguageSelector({ bare = false }: { bare?: boolean }) {
     const { language, setLanguage } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -19,12 +19,14 @@ export default function LanguageSelector() {
     const currentLang = languages.find(l => l.code === language) || languages[0];
 
     return (
-        <div className="absolute top-4 right-4 md:fixed md:top-6 md:right-6 z-50">
+        <div className={bare ? "relative shrink-0" : "absolute top-4 right-4 md:fixed md:top-6 md:right-6 z-50"}>
             <div className="relative">
                 <motion.button
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setIsOpen(!isOpen)}
-                    className="flex items-center gap-2 bg-neutral-900/80 backdrop-blur-md border border-white/10 px-3 py-2 rounded-full shadow-lg hover:bg-neutral-800 transition-colors"
+                    className={bare
+                        ? "flex items-center gap-1.5 px-2.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-neutral-400 hover:text-white hover:bg-white/10 transition-all duration-300 whitespace-nowrap"
+                        : "flex items-center gap-2 bg-neutral-900/80 backdrop-blur-md border border-white/10 px-3 py-2 rounded-full shadow-lg hover:bg-neutral-800 transition-colors"}
                 >
                     <Globe className="w-4 h-4 text-neutral-400" />
                     <span className="text-sm font-medium hidden md:block">{currentLang.name}</span>

@@ -23,7 +23,17 @@ const translations = {
         hero: {
             roleDev: "Desenvolvedor Full Stack Pleno",
             roleData: "Analista de Dados & Especialista em BI",
-            description: "Desenvolvedor Full Stack Pleno especializado no ecossistema JavaScript/TypeScript, arquitetura de microsserviços e integração de IAs generativas. Construo produtos escaláveis com foco em automação, processamento assíncrono e alta performance."
+            description: "Desenvolvedor Full Stack Pleno especializado no ecossistema JavaScript/TypeScript, arquitetura de microsserviços e integração de IAs generativas. Construo produtos escaláveis com foco em automação, processamento assíncrono e alta performance.",
+            ctaHighlights: "Ver Destaques Técnicos",
+            ctaWhatsapp: "Falar no WhatsApp"
+        },
+        nav: {
+            stack: "Stacks",
+            impacto: "Impacto",
+            trajetoria: "Trajetória",
+            sobre: "Sobre Mim",
+            menuOpen: "Abrir menu",
+            menuClose: "Fechar menu"
         },
         about: {
             title: "Sobre Mim",
@@ -133,7 +143,17 @@ const translations = {
         hero: {
             roleDev: "Mid-Level Full Stack Developer",
             roleData: "Data Analyst & BI Specialist",
-            description: "Mid-Level Full Stack Developer specialized in the JavaScript/TypeScript ecosystem, microservices architecture and generative AI integration. I build scalable products focused on automation, async processing and high performance."
+            description: "Mid-Level Full Stack Developer specialized in the JavaScript/TypeScript ecosystem, microservices architecture and generative AI integration. I build scalable products focused on automation, async processing and high performance.",
+            ctaHighlights: "See Technical Highlights",
+            ctaWhatsapp: "Chat on WhatsApp"
+        },
+        nav: {
+            stack: "Stacks",
+            impacto: "Impact",
+            trajetoria: "Trajectory",
+            sobre: "About Me",
+            menuOpen: "Open menu",
+            menuClose: "Close menu"
         },
         about: {
             title: "About Me",
@@ -243,7 +263,17 @@ const translations = {
         hero: {
             roleDev: "Desarrollador Full Stack Pleno",
             roleData: "Analista de Datos & Especialista en BI",
-            description: "Desarrollador Full Stack Pleno especializado en el ecosistema JavaScript/TypeScript, arquitectura de microservicios e integración de IAs generativas. Construyo productos escalables con foco en automatización, procesamiento asíncrono y alto rendimiento."
+            description: "Desarrollador Full Stack Pleno especializado en el ecosistema JavaScript/TypeScript, arquitectura de microservicios e integración de IAs generativas. Construyo productos escalables con foco en automatización, procesamiento asíncrono y alto rendimiento.",
+            ctaHighlights: "Ver Aspectos Destacados",
+            ctaWhatsapp: "Hablar en WhatsApp"
+        },
+        nav: {
+            stack: "Stacks",
+            impacto: "Impacto",
+            trajetoria: "Trayectoria",
+            sobre: "Sobre Mí",
+            menuOpen: "Abrir menú",
+            menuClose: "Cerrar menú"
         },
         about: {
             title: "Sobre Mí",

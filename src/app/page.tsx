@@ -5,10 +5,12 @@ import { TechStack } from "@/components/tech-stack";
 import { Timeline } from "@/components/timeline";
 import { About } from "@/components/about";
 import { Footer } from "@/components/footer";
+import { Navbar } from "@/components/navbar";
 
 export default function Home() {
     return (
         <main className="min-h-screen bg-black text-white selection:bg-neutral-700 selection:text-white">
+            <Navbar />
             <Hero />
             <TechStack />
             <Experience />
