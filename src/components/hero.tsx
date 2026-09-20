@@ -11,7 +11,7 @@ import { useLanguage } from "@/contexts/language-context";
 export const Hero = () => {
     const { t } = useLanguage();
     return (
-        <div className="relative w-full min-h-[42rem] h-auto flex flex-col items-center justify-center overflow-hidden transition-colors duration-500 py-16 bg-slate-950">
+        <div className="relative w-full min-h-[42rem] h-auto flex flex-col items-center justify-center overflow-hidden transition-colors duration-500 pt-10 pb-16 bg-slate-950">
 
             <div className="absolute inset-0 w-full h-full z-0">
                 <HeroBackground mode="developer" />
@@ -23,7 +23,7 @@ export const Hero = () => {
             <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] z-[3]" />
 
 
-            <div className="relative z-10 mx-auto w-42 h-42 mb-4 mt-24 rounded-full border-4 border-white/10 overflow-hidden shadow-2xl">
+            <div className="relative z-10 mx-auto w-42 h-42 mb-4 mt-8 rounded-full border-4 border-white/10 overflow-hidden shadow-2xl">
                 <Image
                     src="/foto-perfil.jpg"
                     alt="Foto do Wallace Luis"
