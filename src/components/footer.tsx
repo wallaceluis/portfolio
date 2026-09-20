@@ -8,9 +8,9 @@ export const Footer = () => {
         <footer className="py-12 bg-neutral-950 relative z-20 overflow-hidden">
             <div className="absolute top-0 inset-x-0 h-16 md:h-24 bg-gradient-to-b from-black to-transparent pointer-events-none" aria-hidden="true" />
             <div className="relative max-w-7xl mx-auto px-4 flex flex-col items-center gap-6">
-                <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500">
+                <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500">
                     {t('footer.title')}
-                </h3>
+                </h2>
 
                 <div className="flex gap-6 mt-4">
                     <Link

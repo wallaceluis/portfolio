@@ -197,7 +197,7 @@ export const Experience = () => {
     }));
 
     return (
-        <section aria-labelledby="highlights-heading" className="py-20 bg-black relative z-20 overflow-hidden">
+        <section id="impacto" aria-labelledby="highlights-heading" className="py-20 bg-black relative z-20 overflow-hidden scroll-mt-24">
             <SectionBackground />
             <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-neutral-900 to-transparent pointer-events-none" aria-hidden="true" />
             <div className="relative max-w-7xl mx-auto px-4">
@@ -216,9 +216,9 @@ export const Experience = () => {
                         <motion.article
                             key={item.id}
                             role="listitem"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, margin: "-80px" }}
                             transition={{ delay: (idx % 3) * 0.1, duration: 0.45 }}
                             className="relative flex flex-col rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 hover:border-blue-500/40 transition-colors p-6 shadow-2xl"
                         >
