@@ -23,7 +23,12 @@ const translations = {
         hero: {
             roleDev: "Desenvolvedor Full Stack Pleno",
             roleData: "Analista de Dados & Especialista em BI",
-            description: "Desenvolvedor Full Stack com experiência em aplicações web, APIs e integrações. Forte atuação no ecossistema JavaScript/TypeScript, com experiência no gerenciamento de monorepos, arquitetura de microsserviços e infraestrutura multi-cloud. Atuação no desenvolvimento e manutenção de produtos escaláveis, integrando IA conversacional, APIs de comunicação multicanal e processamento assíncrono. Produtividade acelerada pelo uso contínuo de ferramentas de desenvolvimento assistido por IA (Cursor, Claude Code, Codex e integrações MCP)."
+            description: "Desenvolvedor Full Stack Pleno especializado no ecossistema JavaScript/TypeScript, arquitetura de microsserviços e integração de IAs generativas. Construo produtos escaláveis com foco em automação, processamento assíncrono e alta performance."
+        },
+        about: {
+            title: "Sobre Mim",
+            p1: "Sou um Desenvolvedor Full Stack com forte atuação em aplicações web, APIs e integrações. Tenho experiência profunda no gerenciamento de monorepos, arquitetura de microsserviços e infraestrutura multi-cloud. Construo produtos escaláveis integrando IA conversacional, APIs de comunicação multicanal e processamento assíncrono. No dia a dia, acelero minha produtividade utilizando continuamente ferramentas de desenvolvimento assistido por IA, como Cursor, Claude Code, Codex e integrações MCP.",
+            p2: "Fora do código e das telas do terminal, sou um grande fã da cultura geek, apaixonado por animes, mangás e jogos. Mas, acima de qualquer stack tecnológica, o meu maior orgulho é ser pai do Levi e marido da Rafaela, que são a minha base e maior motivação."
         },
         footer: {
             title: "Vamos construir algo incrível juntos",
@@ -128,7 +133,12 @@ const translations = {
         hero: {
             roleDev: "Mid-Level Full Stack Developer",
             roleData: "Data Analyst & BI Specialist",
-            description: "Full Stack Developer with experience in web applications, APIs and integrations. Strong background in the JavaScript/TypeScript ecosystem, managing monorepos, microservices architecture and multi-cloud infrastructure. Development and maintenance of scalable products, integrating conversational AI, multichannel communication APIs and async processing. Productivity boosted by continuous use of AI-assisted development tools (Cursor, Claude Code, Codex and MCP integrations)."
+            description: "Mid-Level Full Stack Developer specialized in the JavaScript/TypeScript ecosystem, microservices architecture and generative AI integration. I build scalable products focused on automation, async processing and high performance."
+        },
+        about: {
+            title: "About Me",
+            p1: "I'm a Full Stack Developer with strong experience in web applications, APIs and integrations. I have deep experience managing monorepos, microservices architecture and multi-cloud infrastructure. I build scalable products integrating conversational AI, multichannel communication APIs and async processing. Day to day, I boost my productivity by continuously using AI-assisted development tools like Cursor, Claude Code, Codex and MCP integrations.",
+            p2: "Away from code and terminal screens, I'm a big fan of geek culture, passionate about anime, manga and games. But above any tech stack, my greatest pride is being Levi's father and Rafaela's husband — they're my foundation and greatest motivation."
         },
         footer: {
             title: "Let's build something amazing together",
@@ -233,7 +243,12 @@ const translations = {
         hero: {
             roleDev: "Desarrollador Full Stack Pleno",
             roleData: "Analista de Datos & Especialista en BI",
-            description: "Desarrollador Full Stack con experiencia en aplicaciones web, APIs e integraciones. Sólida actuación en el ecosistema JavaScript/TypeScript, con experiencia en gestión de monorepos, arquitectura de microservicios e infraestructura multi-cloud. Desarrollo y mantenimiento de productos escalables, integrando IA conversacional, APIs de comunicación multicanal y procesamiento asíncrono. Productividad acelerada por el uso continuo de herramientas de desarrollo asistido por IA (Cursor, Claude Code, Codex e integraciones MCP)."
+            description: "Desarrollador Full Stack Pleno especializado en el ecosistema JavaScript/TypeScript, arquitectura de microservicios e integración de IAs generativas. Construyo productos escalables con foco en automatización, procesamiento asíncrono y alto rendimiento."
+        },
+        about: {
+            title: "Sobre Mí",
+            p1: "Soy un Desarrollador Full Stack con sólida actuación en aplicaciones web, APIs e integraciones. Tengo experiencia profunda en gestión de monorepos, arquitectura de microservicios e infraestructura multi-cloud. Construyo productos escalables integrando IA conversacional, APIs de comunicación multicanal y procesamiento asíncrono. En el día a día, acelero mi productividad utilizando continuamente herramientas de desarrollo asistido por IA, como Cursor, Claude Code, Codex e integraciones MCP.",
+            p2: "Fuera del código y de las pantallas del terminal, soy un gran fan de la cultura geek, apasionado por animes, mangas y juegos. Pero, por encima de cualquier stack tecnológica, mi mayor orgullo es ser padre de Levi y esposo de Rafaela, que son mi base y mi mayor motivación."
         },
         footer: {
             title: "Construyamos algo increíble juntos",
