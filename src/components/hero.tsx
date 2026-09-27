@@ -1,9 +1,21 @@
 "use client";
 import React from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { Meteors } from "./ui/meteors";
-import { HeroBackground } from "./hero-background";
 import { motion } from "framer-motion";
+
+// WebGL pesado (three + postprocessing + face-api/tfjs) fora do bundle inicial:
+// carrega em chunk separado após a hidratação, sem bloquear o first paint.
+const HeroBackground = dynamic(
+    () => import("./hero-background").then((m) => m.HeroBackground),
+    {
+        ssr: false,
+        loading: () => (
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950 to-black" />
+        ),
+    }
+);
 
 
 import { useLanguage } from "@/contexts/language-context";
@@ -84,22 +96,22 @@ export const Hero = () => {
 
             <div className="absolute top-0 left-0 w-1/2 h-full overflow-hidden z-[4]">
 
-                <Meteors number={20} />
+                <Meteors number={10} />
             </div>
 
             <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden z-[4]">
 
-                <Meteors number={20} />
+                <Meteors number={10} />
             </div>
 
             <div className="absolute top-0 left-0 w-1/2 h-full overflow-hidden z-[4] rotate-180 opacity-70">
 
-                <Meteors number={15} />
+                <Meteors number={8} />
             </div>
 
             <div className="absolute top-0 right-0 w-1/2 h-full overflow-hidden z-[4] rotate-180 opacity-70">
 
-                <Meteors number={15} />
+                <Meteors number={8} />
             </div>
         </div>
     );

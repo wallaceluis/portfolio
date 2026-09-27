@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { EffectComposer, RenderPass, EffectPass, BloomEffect, ChromaticAberrationEffect } from 'postprocessing';
 import * as THREE from 'three';
-import * as faceapi from 'face-api.js';
+// face-api.js (traz o TF.js junto, ~MBs) só é importado sob demanda dentro do
+// efeito de modelos — e apenas quando enableWebcam=true (nunca no hero atual).
 import './GridScan.css';
 
 const vert = `
@@ -301,6 +302,7 @@ export const GridScan = ({
 }) => {
   const containerRef = useRef(null);
   const videoRef = useRef(null);
+  const faceapiRef = useRef(null);
 
   const rendererRef = useRef(null);
   const materialRef = useRef(null);
@@ -664,9 +666,14 @@ export const GridScan = ({
   }, [enableGyro, uiFaceActive]);
 
   useEffect(() => {
+    // Sem webcam não há deteção facial: evita baixar os pesos do CDN à toa.
+    if (!enableWebcam) return;
     let canceled = false;
     const load = async () => {
       try {
+        const faceapi = await import('face-api.js');
+        if (canceled) return;
+        faceapiRef.current = faceapi;
         await Promise.all([
           faceapi.nets.tinyFaceDetector.loadFromUri(modelsPath),
           faceapi.nets.faceLandmark68TinyNet.loadFromUri(modelsPath)
@@ -680,7 +687,7 @@ export const GridScan = ({
     return () => {
       canceled = true;
     };
-  }, [modelsPath]);
+  }, [enableWebcam, modelsPath]);
 
   useEffect(() => {
     let stop = false;
@@ -690,6 +697,8 @@ export const GridScan = ({
     const start = async () => {
       if (!enableWebcam || !modelsReady) return;
       if (!video) return;
+      const faceapi = faceapiRef.current;
+      if (!faceapi) return;
 
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
