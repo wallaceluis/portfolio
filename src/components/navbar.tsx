@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Layers, Sparkles, Route, UserRound } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import LanguageSelector from "@/components/language-selector";
 
@@ -14,10 +14,10 @@ export const Navbar = () => {
     const [open, setOpen] = useState(false);
 
     const links = [
-        { href: "#tech-stack", label: t("nav.stack") },
-        { href: "#impacto", label: t("nav.impacto") },
-        { href: "#trajetoria", label: t("nav.trajetoria") },
-        { href: "#sobre", label: t("nav.sobre") },
+        { href: "#tech-stack", label: t("nav.stack"), icon: Layers },
+        { href: "#impacto", label: t("nav.impacto"), icon: Sparkles },
+        { href: "#trajetoria", label: t("nav.trajetoria"), icon: Route },
+        { href: "#sobre", label: t("nav.sobre"), icon: UserRound },
     ];
 
     return (
@@ -43,8 +43,9 @@ export const Navbar = () => {
                         <a
                             key={link.href}
                             href={link.href}
-                            className="px-4 py-2 text-sm font-medium text-neutral-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 whitespace-nowrap"
+                            className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-neutral-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 whitespace-nowrap"
                         >
+                            <link.icon className="w-3.5 h-3.5" aria-hidden="true" />
                             {link.label}
                         </a>
                     ))}
@@ -82,8 +83,9 @@ export const Navbar = () => {
                             key={link.href}
                             href={link.href}
                             onClick={() => setOpen(false)}
-                            className="px-4 py-3 text-sm font-medium text-neutral-300 hover:text-white hover:bg-white/10 rounded-2xl transition-all duration-300"
+                            className="flex items-center gap-2.5 px-4 py-3 text-sm font-medium text-neutral-300 hover:text-white hover:bg-white/10 rounded-2xl transition-all duration-300"
                         >
+                            <link.icon className="w-4 h-4 text-neutral-500" aria-hidden="true" />
                             {link.label}
                         </a>
                     ))}

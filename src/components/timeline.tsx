@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { Code, GraduationCap, Calendar } from "lucide-react";
+import { Code, GraduationCap, Calendar, Route } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 
 export const Timeline = () => {
@@ -90,6 +90,12 @@ export const Timeline = () => {
                 transition={{ duration: 0.5 }}
                 className="max-w-7xl mx-auto px-4 mb-16 text-center"
             >
+                <div className="flex justify-center mb-4">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-blue-300">
+                        <Route className="h-3.5 w-3.5" aria-hidden="true" />
+                        {t('timeline.sectionTitle')}
+                    </span>
+                </div>
                 <h2 id="trajetoria-heading" className="text-3xl md:text-5xl font-bold leading-tight pb-2 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-500">
                     {t('timeline.sectionTitle')}
                 </h2>
