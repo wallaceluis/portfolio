@@ -7,6 +7,7 @@ import {
     Network,
     Users,
     Share2,
+    Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -201,6 +202,12 @@ export const Experience = () => {
             <SectionBackground />
             <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-neutral-900 to-transparent pointer-events-none" aria-hidden="true" />
             <div className="relative max-w-7xl mx-auto px-4">
+                <div className="flex justify-center mb-4">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-blue-300">
+                        <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+                        {content.sectionTitle}
+                    </span>
+                </div>
                 <h2
                     id="highlights-heading"
                     className="text-3xl md:text-4xl font-bold mb-4 text-white text-center text-balance"

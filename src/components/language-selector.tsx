@@ -55,7 +55,12 @@ export default function LanguageSelector({ bare = false }: { bare?: boolean }) {
                                         language === lang.code ? "text-white bg-white/5" : "text-neutral-400 hover:text-white"
                                     )}
                                 >
-                                    <span className="text-lg">{lang.flag}</span>
+                                    <span className="text-lg md:hidden shrink-0" aria-hidden="true">
+                                        {lang.flag}
+                                    </span>
+                                    <span className="hidden md:inline-flex text-[11px] font-bold px-1.5 py-0.5 rounded bg-white/10 border border-white/10 text-neutral-300 shrink-0">
+                                        {lang.code.toUpperCase()}
+                                    </span>
                                     <span className="flex-1">{lang.name}</span>
                                     {language === lang.code && <Check className="w-3.5 h-3.5 text-emerald-500" />}
                                 </button>

@@ -101,6 +101,12 @@ export const TechStack = () => {
         <section id="tech-stack" aria-labelledby="tech-stack-heading" className="py-20 bg-neutral-900 relative overflow-hidden scroll-mt-24">
             <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-slate-950 to-transparent pointer-events-none" aria-hidden="true" />
             <div className="relative max-w-7xl mx-auto px-4">
+                <div className="flex justify-center mb-4">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-blue-300">
+                        <Layers className="h-3.5 w-3.5" aria-hidden="true" />
+                        Tech Stacks
+                    </span>
+                </div>
                 <h2 id="tech-stack-heading" className="text-3xl md:text-4xl font-bold mb-4 text-white text-center">
                     Tech Stacks
                 </h2>

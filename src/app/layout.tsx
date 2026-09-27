@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/language-context";
-import WhatsAppModal from "@/components/whatsapp-modal";
+import { AiChatGate } from "@/components/ai-chat-gate";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -115,7 +115,7 @@ export default function RootLayout({
         />
         <LanguageProvider>
           {children}
-          <WhatsAppModal />
+          <AiChatGate />
         </LanguageProvider>
       </body>
     </html>
