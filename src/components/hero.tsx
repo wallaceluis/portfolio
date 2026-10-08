@@ -47,7 +47,7 @@ export const Hero = () => {
     const webgl = useWebGLBackground();
 
     return (
-        <div id="top" className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-24 bg-slate-950 scroll-mt-24">
+        <div id="top" className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden pt-28 pb-20 bg-slate-950 scroll-mt-24">
             <div className="absolute inset-0 w-full h-full z-0" aria-hidden="true">
                 {/* Fallback/base: gradientes CSS (sempre presentes, custo zero) */}
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950 to-black" />

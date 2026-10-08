@@ -80,7 +80,7 @@ export const Timeline = () => {
         <section
             id="trajetoria"
             aria-labelledby="trajetoria-heading"
-            className="w-full bg-neutral-950 font-sans md:px-10 py-20 md:py-28 relative overflow-hidden scroll-mt-24"
+            className="w-full bg-neutral-950 font-sans md:px-10 py-16 md:py-20 relative overflow-hidden scroll-mt-24"
             ref={containerRef}
         >
             <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-black to-transparent pointer-events-none" aria-hidden="true" />

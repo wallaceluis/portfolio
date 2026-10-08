@@ -199,7 +199,7 @@ export const Experience = () => {
     }));
 
     return (
-        <section id="impacto" aria-labelledby="highlights-heading" className="py-20 md:py-28 bg-black relative z-20 overflow-hidden scroll-mt-24">
+        <section id="impacto" aria-labelledby="highlights-heading" className="py-16 md:py-20 bg-black relative z-20 overflow-hidden scroll-mt-24">
             <SectionBackground />
             <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-neutral-950 to-transparent pointer-events-none" aria-hidden="true" />
             <div className="relative max-w-7xl mx-auto px-4">

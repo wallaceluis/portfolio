@@ -107,7 +107,7 @@ const devCategories: Category[] = [languages, frontendMobile, backendApis, infra
 export const TechStack = () => {
     const { t } = useLanguage();
     return (
-        <section id="tech-stack" aria-labelledby="tech-stack-heading" className="py-20 md:py-28 bg-neutral-950 relative overflow-hidden scroll-mt-24">
+        <section id="tech-stack" aria-labelledby="tech-stack-heading" className="py-16 md:py-20 bg-neutral-950 relative overflow-hidden scroll-mt-24">
             <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-black to-transparent pointer-events-none" aria-hidden="true" />
             <div className="relative max-w-6xl mx-auto px-4">
                 <SectionHeader

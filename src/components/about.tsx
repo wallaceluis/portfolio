@@ -29,7 +29,7 @@ export const About = () => {
         <section
             id="sobre"
             aria-labelledby="about-heading"
-            className="relative py-20 md:py-28 bg-black overflow-hidden scroll-mt-24"
+            className="relative py-16 md:py-20 bg-black overflow-hidden scroll-mt-24"
         >
             {/* Profundidade: glows + grelha subtil, como no hero */}
             <SectionBackground />

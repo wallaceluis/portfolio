@@ -20,7 +20,7 @@ export const SectionHeader = ({
     subtitle?: string;
     icon: LucideIcon;
 }) => (
-    <div className="text-center mb-12 md:mb-16">
+    <div className="text-center mb-10 md:mb-12">
         <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-blue-300 mb-4">
             <span className="font-mono text-neutral-500">{index}</span>
             <Icon className="h-3.5 w-3.5" aria-hidden="true" />
