@@ -17,7 +17,8 @@ type Text = Record<Lang, string>;
 
 type Project = {
     repo: string;
-    name: string;
+    /** Nome de exibição: fixo, ou traduzido quando o nome do repositório não diz o que o projeto faz */
+    name: string | Text;
     kind: Text;
     description: Text;
     tags: string[];
@@ -69,7 +70,7 @@ const FEATURED: Project[] = [
 const PROJECTS: Project[] = [
     {
         repo: "hackernews-mcp-server",
-        name: "Hacker News MCP Server",
+        name: { pt: "Hacker News para assistentes de IA", en: "Hacker News for AI assistants", es: "Hacker News para asistentes de IA" },
         kind: { pt: "MCP Server", en: "MCP Server", es: "MCP Server" },
         description: {
             pt: "Servidor Model Context Protocol que deixa Claude, Cursor e outros assistentes lerem o Hacker News, com saída estruturada, validação de parâmetros e testes ponta a ponta pelo próprio protocolo MCP.",
@@ -80,7 +81,7 @@ const PROJECTS: Project[] = [
     },
     {
         repo: "ai-pr-cli",
-        name: "ai-pr-cli",
+        name: { pt: "Descrição de PR gerada por IA", en: "AI-written pull request descriptions", es: "Descripción de PR generada por IA" },
         kind: { pt: "CLI · IA", en: "CLI · AI", es: "CLI · IA" },
         description: {
             pt: "Gera descrições de Pull Request a partir do git diff com OpenAI ou OpenRouter. Filtra ruído (lockfiles, minificados) e corta diffs grandes por arquivo para caber no contexto.",
@@ -91,7 +92,7 @@ const PROJECTS: Project[] = [
     },
     {
         repo: "webhook-relayer",
-        name: "webhook-relayer",
+        name: { pt: "Retransmissor de webhooks com fila", en: "Queued webhook relay", es: "Retransmisor de webhooks con cola" },
         kind: { pt: "Backend · Filas", en: "Backend · Queues", es: "Backend · Colas" },
         description: {
             pt: "Recebe webhooks, responde 202 na hora e entrega via fila com retry e backoff exponencial. Verificação HMAC, idempotência e workers escaláveis, com teste ponta a ponta em Redis real no CI.",
@@ -102,7 +103,7 @@ const PROJECTS: Project[] = [
     },
     {
         repo: "redis-sliding-window",
-        name: "redis-sliding-window",
+        name: { pt: "Limitador de requisições com Redis", en: "Redis rate limiter", es: "Limitador de peticiones con Redis" },
         kind: { pt: "Biblioteca", en: "Library", es: "Librería" },
         description: {
             pt: "Rate limiting distribuído com o algoritmo Sliding Window Log em Redis: decisão atômica em um script Lua, um round trip por requisição e plugin pronto para Fastify.",
@@ -113,7 +114,7 @@ const PROJECTS: Project[] = [
     },
     {
         repo: "stale-branch-cleaner",
-        name: "Stale Branch Cleaner",
+        name: { pt: "Limpeza automática de branches", en: "Automatic stale branch cleanup", es: "Limpieza automática de ramas" },
         kind: { pt: "GitHub Action", en: "GitHub Action", es: "GitHub Action" },
         description: {
             pt: "Action que apaga branches inativas e sem PR aberto. Segura por padrão: dry-run, respeita branches protegidas e limita quantas apaga por execução.",
@@ -144,6 +145,8 @@ const UI: Record<Lang, { title: string; subtitle: string; code: string; all: str
         all: "Ver todos en GitHub",
     },
 };
+
+const nameOf = (p: Project, lang: Lang) => (typeof p.name === "string" ? p.name : p.name[lang]);
 
 const Tags = ({ tags, label }: { tags: string[]; label: string }) => (
     <ul aria-label={label} className="flex flex-wrap gap-2 mt-auto">
@@ -194,7 +197,7 @@ export const Projects = () => {
                                 <div className="relative aspect-[16/9] overflow-hidden border-b border-white/10 bg-black">
                                     <Image
                                         src={p.image}
-                                        alt={`Screenshot ${p.name}`}
+                                        alt={`Screenshot ${nameOf(p, lang)}`}
                                         fill
                                         sizes="(min-width: 1024px) 600px, 100vw"
                                         className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
@@ -207,9 +210,9 @@ export const Projects = () => {
                                     <span className="text-xs font-medium text-blue-300">{p.kind[lang]}</span>
                                     <ArrowUpRight className="w-4 h-4 text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" aria-hidden="true" />
                                 </div>
-                                <h3 className="text-xl font-bold text-white mb-2">{p.name}</h3>
+                                <h3 className="text-xl font-bold text-white mb-2">{nameOf(p, lang)}</h3>
                                 <p className="text-neutral-400 text-sm leading-relaxed mb-5">{p.description[lang]}</p>
-                                <Tags tags={p.tags} label={`Tecnologias: ${p.name}`} />
+                                <Tags tags={p.tags} label={`Tecnologias: ${nameOf(p, lang)}`} />
                             </div>
                         </motion.a>
                     ))}
@@ -235,9 +238,10 @@ export const Projects = () => {
                                 </span>
                                 <ArrowUpRight className="w-4 h-4 text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" aria-hidden="true" />
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2 tracking-tight">{p.name}</h3>
+                            <h3 className="text-lg font-bold text-white tracking-tight leading-snug">{nameOf(p, lang)}</h3>
+                            <p className="font-mono text-xs text-neutral-500 mt-1 mb-2">{p.repo}</p>
                             <p className="text-neutral-400 text-sm leading-relaxed mb-5">{p.description[lang]}</p>
-                            <Tags tags={p.tags} label={`Tecnologias: ${p.name}`} />
+                            <Tags tags={p.tags} label={`Tecnologias: ${nameOf(p, lang)}`} />
                             <span className="sr-only">{ui.code}</span>
                         </motion.a>
                     ))}
