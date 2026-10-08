@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Cpu, Heart, UserRound } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import { SectionBackground } from "./ui/section-background";
+import { SectionHeader } from "./ui/section-header";
 
 export const About = () => {
     const { t } = useLanguage();
@@ -28,31 +29,20 @@ export const About = () => {
         <section
             id="sobre"
             aria-labelledby="about-heading"
-            className="relative py-20 bg-black overflow-hidden scroll-mt-24"
+            className="relative py-16 md:py-20 bg-black overflow-hidden scroll-mt-24"
         >
             {/* Profundidade: glows + grelha subtil, como no hero */}
             <SectionBackground />
-            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-neutral-900 to-transparent pointer-events-none" aria-hidden="true" />
+            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-black to-transparent pointer-events-none" aria-hidden="true" />
 
             <div className="relative max-w-5xl mx-auto px-4">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center mb-12"
-                >
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-blue-300 mb-4">
-                        <UserRound className="h-3.5 w-3.5" aria-hidden="true" />
-                        {t("about.title")}
-                    </span>
-                    <h2
-                        id="about-heading"
-                        className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-500 leading-tight pb-2 text-balance"
-                    >
-                        {t("about.title")}
-                    </h2>
-                </motion.div>
+                <SectionHeader
+                    id="about-heading"
+                    index="05"
+                    label={t("nav.sobre")}
+                    title={t("about.title")}
+                    icon={UserRound}
+                />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6" role="list">
                     {cards.map((card, idx) => (

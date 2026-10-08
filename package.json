@@ -15,7 +15,6 @@
     "face-api.js": "^0.22.2",
     "framer-motion": "^12.26.1",
     "lucide-react": "^0.562.0",
-    "mini-svg-data-uri": "^1.4.4",
     "next": "16.1.1",
     "postprocessing": "^6.38.2",
     "react": "19.2.3",

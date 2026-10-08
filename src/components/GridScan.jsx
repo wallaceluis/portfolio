@@ -423,9 +423,10 @@ export const GridScan = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'low-power' });
     rendererRef.current = renderer;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    // Fundo decorativo: 1.5x de DPR já é nítido e poupa ~45% de pixels em ecrãs 2x/3x
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.NoToneMapping;
@@ -555,10 +556,33 @@ export const GridScan = ({
       }
       rafRef.current = requestAnimationFrame(tick);
     };
-    rafRef.current = requestAnimationFrame(tick);
+
+    // Só renderiza quando o hero está visível e o separador ativo:
+    // fora do ecrã o loop WebGL parava de contribuir mas continuava a gastar GPU/bateria.
+    let onScreen = true;
+    const sync = () => {
+      const shouldRun = onScreen && !document.hidden;
+      if (shouldRun && !rafRef.current) {
+        last = performance.now();
+        rafRef.current = requestAnimationFrame(tick);
+      } else if (!shouldRun && rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+    };
+    const io = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      sync();
+    });
+    io.observe(container);
+    document.addEventListener('visibilitychange', sync);
+    sync();
 
     return () => {
+      io.disconnect();
+      document.removeEventListener('visibilitychange', sync);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
       window.removeEventListener('resize', onResize);
       material.dispose();
       quad.geometry.dispose();

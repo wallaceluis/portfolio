@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X, Layers, Sparkles, Route, UserRound } from "lucide-react";
+import { Menu, X, Layers, Sparkles, FolderGit2, Route, UserRound } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import LanguageSelector from "@/components/language-selector";
 
@@ -12,10 +12,34 @@ const WHATSAPP_URL =
 export const Navbar = () => {
     const { t } = useLanguage();
     const [open, setOpen] = useState(false);
+    const [active, setActive] = useState<string | null>(null);
+
+    // Destaca o link da secção que está no centro do ecrã
+    useEffect(() => {
+        const ids = ["tech-stack", "impacto", "projetos", "trajetoria", "sobre"];
+        const io = new IntersectionObserver(
+            (entries) => {
+                for (const e of entries) if (e.isIntersecting) setActive(`#${e.target.id}`);
+            },
+            { rootMargin: "-45% 0px -50% 0px" }
+        );
+        ids.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) io.observe(el);
+        });
+        const top = document.getElementById("top");
+        const ioTop = new IntersectionObserver(([e]) => e.isIntersecting && setActive(null), { rootMargin: "-45% 0px -50% 0px" });
+        if (top) ioTop.observe(top);
+        return () => {
+            io.disconnect();
+            ioTop.disconnect();
+        };
+    }, []);
 
     const links = [
         { href: "#tech-stack", label: t("nav.stack"), icon: Layers },
         { href: "#impacto", label: t("nav.impacto"), icon: Sparkles },
+        { href: "#projetos", label: t("nav.projetos"), icon: FolderGit2 },
         { href: "#trajetoria", label: t("nav.trajetoria"), icon: Route },
         { href: "#sobre", label: t("nav.sobre"), icon: UserRound },
     ];
@@ -43,7 +67,12 @@ export const Navbar = () => {
                         <a
                             key={link.href}
                             href={link.href}
-                            className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-neutral-400 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300 whitespace-nowrap"
+                            aria-current={active === link.href ? "location" : undefined}
+                            className={`inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 whitespace-nowrap ${
+                                active === link.href
+                                    ? "text-white bg-white/10"
+                                    : "text-neutral-400 hover:text-white hover:bg-white/10"
+                            }`}
                         >
                             <link.icon className="w-3.5 h-3.5" aria-hidden="true" />
                             {link.label}
