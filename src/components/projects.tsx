@@ -43,37 +43,38 @@ const FEATURED: Project[] = [
     {
         repo: "coins-tracker",
         name: "Coins Tracker",
-        kind: { pt: "Web app", en: "Web app", es: "Web app" },
+        kind: { pt: "Web app · Vue 3", en: "Web app · Vue 3", es: "Web app · Vue 3" },
         description: {
-            pt: "Painel de criptomoedas em tempo real com conversor para moedas fiduciárias (BRL, USD, EUR, GBP, JPY), tema claro/escuro e i18n em três idiomas.",
-            en: "Real-time crypto dashboard with a converter to fiat currencies (BRL, USD, EUR, GBP, JPY), light/dark theme and i18n in three languages.",
-            es: "Panel de criptomonedas en tiempo real con conversor a monedas fiduciarias (BRL, USD, EUR, GBP, JPY), tema claro/oscuro e i18n en tres idiomas.",
+            pt: "Painel cripto com as 20 maiores moedas, gráfico de 7 dias em SVG próprio, conversor nos dois sentidos e atualização automática. Cotação em 5 moedas, 3 idiomas, tema claro/escuro, testes e deploy via GitHub Actions.",
+            en: "Crypto dashboard with the top 20 coins, a hand-rolled SVG 7-day chart, two-way converter and auto-refresh. Prices in 5 currencies, 3 languages, light/dark theme, tests and deploy via GitHub Actions.",
+            es: "Panel cripto con las 20 mayores monedas, gráfico de 7 días en SVG propio, conversor en ambos sentidos y actualización automática. Cotización en 5 monedas, 3 idiomas, tema claro/oscuro, tests y deploy con GitHub Actions.",
         },
-        tags: ["Vue 3", "TypeScript", "Pinia", "Tailwind CSS", "Vitest"],
+        tags: ["Vue 3", "TypeScript", "Tailwind CSS", "VueUse", "Vitest", "GitHub Actions"],
         image: "/projects/coins-tracker.webp",
     },
-];
-
-const PROJECTS: Project[] = [
     {
         repo: "Talents-MultiOne",
         name: "Talents MultiOne",
         kind: { pt: "Full stack · equipe de 3", en: "Full stack · team of 3", es: "Full stack · equipo de 3" },
         description: {
-            pt: "Sistema de recrutamento com gestão de empresas, vagas, candidatos e relatórios, autenticação JWT e perfis de acesso. Deploy com Docker, Nginx e GitHub Actions.",
-            en: "Recruitment system managing companies, openings, candidates and reports, with JWT auth and access roles. Deployed with Docker, Nginx and GitHub Actions.",
-            es: "Sistema de reclutamiento con gestión de empresas, vacantes, candidatos e informes, autenticación JWT y perfiles de acceso. Deploy con Docker, Nginx y GitHub Actions.",
+            pt: "Sistema de recrutamento com gestão de empresas, vagas, candidatos e relatórios, autenticação JWT e perfis de acesso. CI com migrations e seed em Postgres real e teste de login na API; Docker e Nginx para deploy.",
+            en: "Recruitment system managing companies, openings, candidates and reports, with JWT auth and access roles. CI runs migrations and seed on a real Postgres plus an API login smoke test; Docker and Nginx for deploy.",
+            es: "Sistema de reclutamiento con gestión de empresas, vacantes, candidatos e informes, autenticación JWT y perfiles de acceso. CI con migrations y seed en Postgres real y test de login en la API; Docker y Nginx para deploy.",
         },
-        tags: ["Nest.js", "Next.js", "Prisma", "PostgreSQL", "Docker"],
+        tags: ["Nest.js", "Next.js", "Prisma", "PostgreSQL", "Docker", "GitHub Actions"],
+        image: "/projects/talents.webp",
     },
+];
+
+const PROJECTS: Project[] = [
     {
         repo: "hackernews-mcp-server",
         name: "Hacker News MCP Server",
         kind: { pt: "MCP Server", en: "MCP Server", es: "MCP Server" },
         description: {
-            pt: "Servidor Model Context Protocol que deixa Claude, Cursor e outros assistentes lerem o Hacker News, com saída estruturada e validação de parâmetros.",
-            en: "Model Context Protocol server that lets Claude, Cursor and other assistants read Hacker News, with structured output and parameter validation.",
-            es: "Servidor Model Context Protocol que permite a Claude, Cursor y otros asistentes leer Hacker News, con salida estructurada y validación de parámetros.",
+            pt: "Servidor Model Context Protocol que deixa Claude, Cursor e outros assistentes lerem o Hacker News, com saída estruturada, validação de parâmetros e testes ponta a ponta pelo próprio protocolo MCP.",
+            en: "Model Context Protocol server that lets Claude, Cursor and other assistants read Hacker News, with structured output, parameter validation and end-to-end tests through the MCP protocol itself.",
+            es: "Servidor Model Context Protocol que permite a Claude, Cursor y otros asistentes leer Hacker News, con salida estructurada, validación de parámetros y tests de extremo a extremo por el propio protocolo MCP.",
         },
         tags: ["MCP", "TypeScript", "Zod", "Node.js"],
     },
@@ -93,9 +94,9 @@ const PROJECTS: Project[] = [
         name: "webhook-relayer",
         kind: { pt: "Backend · Filas", en: "Backend · Queues", es: "Backend · Colas" },
         description: {
-            pt: "Recebe webhooks, responde 202 na hora e entrega via fila com retry e backoff exponencial. Verificação HMAC, idempotência e workers escaláveis.",
-            en: "Receives webhooks, answers 202 right away and delivers them through a queue with retries and exponential backoff. HMAC verification, idempotency and scalable workers.",
-            es: "Recibe webhooks, responde 202 al instante y los entrega mediante una cola con reintentos y backoff exponencial. Verificación HMAC, idempotencia y workers escalables.",
+            pt: "Recebe webhooks, responde 202 na hora e entrega via fila com retry e backoff exponencial. Verificação HMAC, idempotência e workers escaláveis, com teste ponta a ponta em Redis real no CI.",
+            en: "Receives webhooks, answers 202 right away and delivers them through a queue with retries and exponential backoff. HMAC verification, idempotency and scalable workers, with an end-to-end test on real Redis in CI.",
+            es: "Recibe webhooks, responde 202 al instante y los entrega mediante una cola con reintentos y backoff exponencial. Verificación HMAC, idempotencia y workers escalables, con test de extremo a extremo en Redis real en CI.",
         },
         tags: ["Bun", "Hono", "BullMQ", "Redis", "Docker"],
     },
@@ -176,7 +177,7 @@ export const Projects = () => {
                 />
 
                 {/* Destaques com print */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     {FEATURED.map((p, idx) => (
                         <motion.a
                             key={p.repo}
@@ -240,17 +241,19 @@ export const Projects = () => {
                             <span className="sr-only">{ui.code}</span>
                         </motion.a>
                     ))}
-                </div>
 
-                <div className="flex justify-center mt-10">
+                    {/* Fecha a grelha de 3 colunas e leva ao perfil completo */}
                     <a
                         href={`${GITHUB}?tab=repositories`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-neutral-300 border border-white/15 hover:text-white hover:bg-white/5 transition-colors"
+                        className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-white/15 p-6 text-center text-neutral-400 hover:text-white hover:border-blue-500/40 hover:bg-white/[0.02] transition-colors min-h-[12rem]"
                     >
-                        <Github className="w-4 h-4" aria-hidden="true" />
-                        {ui.all}
+                        <Github className="w-8 h-8" aria-hidden="true" />
+                        <span className="inline-flex items-center gap-1.5 text-sm font-medium">
+                            {ui.all}
+                            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
+                        </span>
                     </a>
                 </div>
             </div>
