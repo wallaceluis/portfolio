@@ -42,14 +42,14 @@ const FEATURED: Project[] = [
     },
     {
         repo: "coins-tracker",
-        name: "Coins Tracker",
-        kind: { pt: "Web app · Vue 3", en: "Web app · Vue 3", es: "Web app · Vue 3" },
+        name: "Market Tracker",
+        kind: { pt: "Full stack · Vue 3 + serverless", en: "Full stack · Vue 3 + serverless", es: "Full stack · Vue 3 + serverless" },
         description: {
-            pt: "Painel cripto com as 20 maiores moedas, gráfico de 7 dias em SVG próprio, conversor nos dois sentidos e atualização automática. Cotação em 5 moedas, 3 idiomas, tema claro/escuro, testes e deploy via GitHub Actions.",
-            en: "Crypto dashboard with the top 20 coins, a hand-rolled SVG 7-day chart, two-way converter and auto-refresh. Prices in 5 currencies, 3 languages, light/dark theme, tests and deploy via GitHub Actions.",
-            es: "Panel cripto con las 20 mayores monedas, gráfico de 7 días en SVG propio, conversor en ambos sentidos y actualización automática. Cotización en 5 monedas, 3 idiomas, tema claro/oscuro, tests y deploy con GitHub Actions.",
+            pt: "Cripto e ações da B3 com gráficos e conversor, mais alertas de preço por e-mail para qualquer pessoa: confirmação por link, disparo único com rearme e cron a cada 15 min. API serverless na Vercel, Postgres, Resend e testes de integração no CI.",
+            en: "Crypto and Brazilian stocks with charts and a converter, plus email price alerts for anyone: link confirmation, fire-once with re-arm and a 15-min cron. Serverless API on Vercel, Postgres, Resend and integration tests in CI.",
+            es: "Cripto y acciones de la B3 con gráficos y conversor, más alertas de precio por correo para cualquiera: confirmación por enlace, disparo único con rearme y cron cada 15 min. API serverless en Vercel, Postgres, Resend y tests de integración en CI.",
         },
-        tags: ["Vue 3", "TypeScript", "Tailwind CSS", "VueUse", "Vitest", "GitHub Actions"],
+        tags: ["Vue 3", "TypeScript", "Vercel Functions", "PostgreSQL", "Resend", "GitHub Actions"],
         image: "/projects/coins-tracker.webp",
     },
     {
