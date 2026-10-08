@@ -2,6 +2,7 @@
 import { MotionConfig } from "framer-motion";
 import { Hero } from "@/components/hero";
 import { Experience } from "@/components/experience";
+import { Projects } from "@/components/projects";
 import { TechStack } from "@/components/tech-stack";
 import { Timeline } from "@/components/timeline";
 import { About } from "@/components/about";
@@ -17,6 +18,7 @@ export default function Home() {
                 <Hero />
                 <TechStack />
                 <Experience />
+                <Projects />
                 <Timeline />
                 <About />
                 <Footer />

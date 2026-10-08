@@ -33,12 +33,12 @@ export const About = () => {
         >
             {/* Profundidade: glows + grelha subtil, como no hero */}
             <SectionBackground />
-            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-neutral-950 to-transparent pointer-events-none" aria-hidden="true" />
+            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-black to-transparent pointer-events-none" aria-hidden="true" />
 
             <div className="relative max-w-5xl mx-auto px-4">
                 <SectionHeader
                     id="about-heading"
-                    index="04"
+                    index="05"
                     label={t("nav.sobre")}
                     title={t("about.title")}
                     icon={UserRound}

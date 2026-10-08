@@ -80,15 +80,15 @@ export const Timeline = () => {
         <section
             id="trajetoria"
             aria-labelledby="trajetoria-heading"
-            className="w-full bg-neutral-950 font-sans md:px-10 py-16 md:py-20 relative overflow-hidden scroll-mt-24"
+            className="w-full bg-black font-sans md:px-10 py-16 md:py-20 relative overflow-hidden scroll-mt-24"
             ref={containerRef}
         >
-            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-black to-transparent pointer-events-none" aria-hidden="true" />
+            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-neutral-950 to-transparent pointer-events-none" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto px-4">
                 <SectionHeader
                     id="trajetoria-heading"
-                    index="03"
+                    index="04"
                     label={t("nav.trajetoria")}
                     title={t("timeline.sectionTitle")}
                     subtitle={t("timeline.sectionSubtitleDev")}

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X, Layers, Sparkles, Route, UserRound } from "lucide-react";
+import { Menu, X, Layers, Sparkles, FolderGit2, Route, UserRound } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import LanguageSelector from "@/components/language-selector";
 
@@ -16,7 +16,7 @@ export const Navbar = () => {
 
     // Destaca o link da secção que está no centro do ecrã
     useEffect(() => {
-        const ids = ["tech-stack", "impacto", "trajetoria", "sobre"];
+        const ids = ["tech-stack", "impacto", "projetos", "trajetoria", "sobre"];
         const io = new IntersectionObserver(
             (entries) => {
                 for (const e of entries) if (e.isIntersecting) setActive(`#${e.target.id}`);
@@ -39,6 +39,7 @@ export const Navbar = () => {
     const links = [
         { href: "#tech-stack", label: t("nav.stack"), icon: Layers },
         { href: "#impacto", label: t("nav.impacto"), icon: Sparkles },
+        { href: "#projetos", label: t("nav.projetos"), icon: FolderGit2 },
         { href: "#trajetoria", label: t("nav.trajetoria"), icon: Route },
         { href: "#sobre", label: t("nav.sobre"), icon: UserRound },
     ];

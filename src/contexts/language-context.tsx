@@ -28,6 +28,7 @@ const translations = {
             ctaWhatsapp: "Falar no WhatsApp"
         },
         nav: {
+            projetos: "Projetos",
             stack: "Stacks",
             impacto: "Impacto",
             trajetoria: "Trajetória",
@@ -158,6 +159,7 @@ const translations = {
             ctaWhatsapp: "Chat on WhatsApp"
         },
         nav: {
+            projetos: "Projects",
             stack: "Stacks",
             impacto: "Impact",
             trajetoria: "Trajectory",
@@ -288,6 +290,7 @@ const translations = {
             ctaWhatsapp: "Hablar en WhatsApp"
         },
         nav: {
+            projetos: "Proyectos",
             stack: "Stacks",
             impacto: "Impacto",
             trajetoria: "Trayectoria",
