@@ -19,7 +19,7 @@ export const SectionBackground = ({
     vignette?: string;
 }) => (
     <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute inset-0 bg-grid-white/[0.03]" />
+        <div className="absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
         <div
             className={`absolute -top-32 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full blur-3xl ${glowA}`}
         />
@@ -30,5 +30,7 @@ export const SectionBackground = ({
             className={`absolute top-1/4 -right-24 w-[26rem] h-[26rem] rounded-full blur-3xl ${glowC}`}
         />
         <div className={`absolute inset-0 ${vignette} [mask-image:radial-gradient(ellipse_at_center,transparent_30%,black)]`} />
+        {/* Esbate os glows na base para não terminarem num corte seco na secção seguinte */}
+        <div className={`absolute bottom-0 inset-x-0 h-40 ${vignette} [mask-image:linear-gradient(to_top,black,transparent)]`} />
     </div>
 );

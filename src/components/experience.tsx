@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 
 import { useLanguage } from "@/contexts/language-context";
 import { SectionBackground } from "./ui/section-background";
+import { SectionHeader } from "./ui/section-header";
 
 /* ------------------------------------------------------------------ */
 /*  Destaques Técnicos & Impacto — conteúdo trilíngue                  */
@@ -188,7 +189,7 @@ const ICONS: Record<string, React.ReactNode> = {
 };
 
 export const Experience = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const lang = (["pt", "en", "es"].includes(language) ? language : "pt") as "pt" | "en" | "es";
 
     const content = HIGHLIGHTS_I18N[lang];
@@ -198,25 +199,18 @@ export const Experience = () => {
     }));
 
     return (
-        <section id="impacto" aria-labelledby="highlights-heading" className="py-20 bg-black relative z-20 overflow-hidden scroll-mt-24">
+        <section id="impacto" aria-labelledby="highlights-heading" className="py-20 md:py-28 bg-black relative z-20 overflow-hidden scroll-mt-24">
             <SectionBackground />
-            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-neutral-900 to-transparent pointer-events-none" aria-hidden="true" />
+            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-neutral-950 to-transparent pointer-events-none" aria-hidden="true" />
             <div className="relative max-w-7xl mx-auto px-4">
-                <div className="flex justify-center mb-4">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-blue-300">
-                        <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-                        {content.sectionTitle}
-                    </span>
-                </div>
-                <h2
+                <SectionHeader
                     id="highlights-heading"
-                    className="text-3xl md:text-4xl font-bold mb-4 text-white text-center text-balance"
-                >
-                    {content.sectionTitle}
-                </h2>
-                <p className="text-neutral-400 max-w-2xl mx-auto text-center text-sm md:text-base mb-12 leading-relaxed">
-                    {content.subtitle}
-                </p>
+                    index="02"
+                    label={t("nav.impacto")}
+                    title={content.sectionTitle}
+                    subtitle={content.subtitle}
+                    icon={Sparkles}
+                />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
                     {highlights.map((item, idx) => (
@@ -227,8 +221,9 @@ export const Experience = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-80px" }}
                             transition={{ delay: (idx % 3) * 0.1, duration: 0.45 }}
-                            className="relative flex flex-col rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 border border-white/10 hover:border-blue-500/40 transition-colors p-6 shadow-2xl"
+                            className="group relative flex flex-col rounded-2xl bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 backdrop-blur-sm border border-white/10 hover:border-blue-500/40 hover:-translate-y-1 transition-[border-color,transform] duration-300 p-6 shadow-2xl"
                         >
+                            <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
                             <div className="flex items-center gap-3 mb-4">
                                 <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 shrink-0">
                                     {item.icon}

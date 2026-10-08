@@ -1,84 +1,82 @@
-import Link from "next/link";
-import { Github, Linkedin, Mail, Instagram, MessageCircle } from "lucide-react";
+import { Github, Linkedin, Mail, Instagram, MessageCircle, ArrowUp } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
+
+const WHATSAPP_URL =
+    "https://wa.me/5519982571877?text=Ol%C3%A1%20Wallace!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar.";
+
+const SOCIALS = [
+    { href: "https://github.com/wallaceluis", label: "GitHub", icon: Github },
+    { href: "https://linkedin.com/in/wallaceluis", label: "LinkedIn", icon: Linkedin },
+    { href: "https://instagram.com/wallaceluis_", label: "Instagram", icon: Instagram },
+    { href: "mailto:contato@wallaceluis.com.br", label: "Email", icon: Mail },
+];
 
 export const Footer = () => {
     const { t } = useLanguage();
     return (
-        <footer className="py-12 bg-neutral-950 relative z-20 overflow-hidden">
-            <div className="absolute top-0 inset-x-0 h-16 md:h-24 bg-gradient-to-b from-black to-transparent pointer-events-none" aria-hidden="true" />
-            <div className="relative max-w-7xl mx-auto px-4 flex flex-col items-center gap-6">
-                <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500">
-                    {t('footer.title')}
-                </h2>
+        <footer id="contato" className="pt-8 pb-10 bg-black relative z-20 overflow-hidden">
+            <div className="relative max-w-5xl mx-auto px-4">
+                {/* CTA final */}
+                <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-blue-950/60 via-neutral-950 to-purple-950/40 px-6 py-12 md:py-16 text-center">
+                    <div className="absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_70%)]" aria-hidden="true" />
+                    <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[30rem] h-[30rem] max-w-full rounded-full bg-blue-600/20 blur-3xl" aria-hidden="true" />
 
-                <div className="flex gap-6 mt-4">
-                    <Link
-                        href="https://github.com/wallaceluis"
-                        target="_blank"
-                        className="p-3 rounded-full bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 hover:border-neutral-600 transition-all text-white"
-                    >
-                        <Github className="w-5 h-5" />
-                    </Link>
-                    <Link
-                        href="https://linkedin.com/in/wallaceluis"
-                        target="_blank"
-                        className="p-3 rounded-full bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 hover:border-neutral-600 transition-all text-white"
-                    >
-                        <Linkedin className="w-5 h-5" />
-                    </Link>
-                    <Link
-                        href="mailto:contato@wallaceluis.com.br"
+                    <div className="relative">
+                        <h2 className="text-3xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-400 text-balance">
+                            {t("footer.title")}
+                        </h2>
+                        <p className="mt-4 text-neutral-400 max-w-xl mx-auto text-sm md:text-base text-pretty">
+                            {t("footer.subtitle")}
+                        </p>
 
-                        aria-label="Email"
-                        className="p-3 rounded-full bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 hover:border-neutral-600 transition-all text-white"
-                    >
-                        <Mail className="w-5 h-5" />
-                    </Link>
-                    <Link
-                        href="https://wa.me/5519982571877?text=Ol%C3%A1%20Wallace!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar."
-                        target="_blank"
-                        aria-label="WhatsApp"
-                        className="p-3 rounded-full bg-neutral-900 border border-neutral-800 hover:bg-[#25D366] hover:border-[#25D366] transition-all text-white"
-                    >
-                        <MessageCircle className="w-5 h-5" />
-                    </Link>
-                    <Link
-                        href="https://instagram.com/wallaceluis_"
-                        target="_blank"
-                        aria-label="Instagram"
-                        className="p-3 rounded-full bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 hover:border-neutral-600 transition-all text-white"
-                    >
-                        <Instagram className="w-5 h-5" />
-                    </Link>
+                        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+                            <a
+                                href={WHATSAPP_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-[#25D366]/90 hover:bg-[#25D366] shadow-[0_0_24px_rgba(37,211,102,0.35)] transition-colors"
+                            >
+                                <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                                {t("hero.ctaWhatsapp")}
+                            </a>
+                            <a
+                                href="mailto:contato@wallaceluis.com.br"
+                                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white border border-white/20 hover:bg-white/10 transition-colors"
+                            >
+                                <Mail className="w-4 h-4" aria-hidden="true" />
+                                contato@wallaceluis.com.br
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="flex flex-col items-center gap-1 text-neutral-500 mt-4 text-sm">
-                    <Link
-                        href="https://wa.me/5519982571877"
-                        target="_blank"
-                        className="hover:text-white transition-colors"
-                    >
-                        (19) 98257-1877
-                    </Link>
-                    <Link
-                        href="https://instagram.com/wallaceluis_"
-                        target="_blank"
-                        className="hover:text-white transition-colors"
-                    >
-                        @wallaceluis_
-                    </Link>
-                    <Link
-                        href="mailto:contato@wallaceluis.com.br"
-                        className="hover:text-white transition-colors"
-                    >
-                        contato@wallaceluis.com.br
-                    </Link>
-                </div>
+                <div className="mt-10 flex flex-col-reverse md:flex-row items-center justify-between gap-6">
+                    <p className="text-sm text-neutral-500">
+                        © {new Date().getFullYear()} Wallace Luis. {t("footer.rights")}
+                    </p>
 
-                <p className="text-sm text-neutral-600 mt-8">
-                    © {new Date().getFullYear()} Wallace Luis. {t('footer.rights')}
-                </p>
+                    <div className="flex items-center gap-2">
+                        {SOCIALS.map(({ href, label, icon: Icon }) => (
+                            <a
+                                key={label}
+                                href={href}
+                                target={href.startsWith("http") ? "_blank" : undefined}
+                                rel="noopener noreferrer"
+                                aria-label={label}
+                                className="p-2.5 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-600 transition-colors"
+                            >
+                                <Icon className="w-4 h-4" aria-hidden="true" />
+                            </a>
+                        ))}
+                        <a
+                            href="#top"
+                            aria-label="Voltar ao topo"
+                            className="ml-2 p-2.5 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-600 transition-colors"
+                        >
+                            <ArrowUp className="w-4 h-4" aria-hidden="true" />
+                        </a>
+                    </div>
+                </div>
             </div>
         </footer>
     );

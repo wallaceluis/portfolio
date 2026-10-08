@@ -1,6 +1,9 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
+import { SectionHeader } from "./ui/section-header";
 import {
     Atom,
     Smartphone,
@@ -33,11 +36,13 @@ import {
 } from "lucide-react";
 
 
-type Tech = { name: string; icon: any; detail?: string };
-type Category = { title: string; items: Tech[] };
+type Tech = { name: string; icon: LucideIcon; detail?: string };
+// title = chave de tradução em techStack.*
+type Category = { title: string; icon: LucideIcon; items: Tech[] };
 
 const languages: Category = {
-    title: "Linguagens",
+    title: "languages",
+    icon: Braces,
     items: [
         { name: "TypeScript", icon: FileCode },
         { name: "JavaScript", icon: Braces },
@@ -47,7 +52,8 @@ const languages: Category = {
 };
 
 const frontendMobile: Category = {
-    title: "Frontend & Mobile",
+    title: "frontend",
+    icon: AppWindow,
     items: [
         { name: "React", icon: Atom },
         { name: "React Native", icon: Smartphone, detail: "bare workflow · iOS/Android" },
@@ -60,7 +66,8 @@ const frontendMobile: Category = {
 };
 
 const backendApis: Category = {
-    title: "Backend & APIs",
+    title: "backend",
+    icon: Server,
     items: [
         { name: "Node.js", icon: Server },
         { name: "Bun", icon: Flame },
@@ -74,7 +81,8 @@ const backendApis: Category = {
 };
 
 const infraCloudAi: Category = {
-    title: "Infraestrutura, Cloud & IA",
+    title: "infra",
+    icon: Cloud,
     items: [
         { name: "AWS", icon: Cloud },
         { name: "GCP", icon: Globe },
@@ -97,61 +105,60 @@ const infraCloudAi: Category = {
 const devCategories: Category[] = [languages, frontendMobile, backendApis, infraCloudAi];
 
 export const TechStack = () => {
+    const { t } = useLanguage();
     return (
-        <section id="tech-stack" aria-labelledby="tech-stack-heading" className="py-20 bg-neutral-900 relative overflow-hidden scroll-mt-24">
-            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-slate-950 to-transparent pointer-events-none" aria-hidden="true" />
-            <div className="relative max-w-7xl mx-auto px-4">
-                <div className="flex justify-center mb-4">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-blue-300">
-                        <Layers className="h-3.5 w-3.5" aria-hidden="true" />
-                        Tech Stacks
-                    </span>
-                </div>
-                <h2 id="tech-stack-heading" className="text-3xl md:text-4xl font-bold mb-4 text-white text-center">
-                    Tech Stacks
-                </h2>
-                <p className="text-neutral-400 text-center text-sm md:text-base mb-12 max-w-2xl mx-auto">
-                    Ecossistema Full Stack — das linguagens base ao cloud e IA.
-                </p>
+        <section id="tech-stack" aria-labelledby="tech-stack-heading" className="py-20 md:py-28 bg-neutral-950 relative overflow-hidden scroll-mt-24">
+            <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-black to-transparent pointer-events-none" aria-hidden="true" />
+            <div className="relative max-w-6xl mx-auto px-4">
+                <SectionHeader
+                    id="tech-stack-heading"
+                    index="01"
+                    label={t("nav.stack")}
+                    title={t("techStack.title")}
+                    subtitle={t("techStack.subtitle")}
+                    icon={Layers}
+                />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="rounded-3xl border border-white/10 bg-neutral-900/40 divide-y divide-white/10 overflow-hidden">
                     {devCategories.map((cat, catIdx) => (
                         <motion.div
                             key={cat.title}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 16 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: catIdx * 0.1 }}
-                            className="rounded-2xl bg-neutral-950 border border-neutral-800 p-6 flex flex-col"
+                            viewport={{ once: true, margin: "-60px" }}
+                            transition={{ delay: catIdx * 0.08, duration: 0.4 }}
+                            className="grid md:grid-cols-[15rem_1fr] gap-4 md:gap-8 p-6 md:p-8 hover:bg-white/[0.02] transition-colors"
                         >
-                            <h3 className="text-lg font-semibold text-white mb-1">
-                                <span className="text-blue-500">▸ </span>
-                                {cat.title}
-                            </h3>
-                            <p className="text-xs text-neutral-500 mb-5">
-                                {cat.items.length} tecnologias
-                            </p>
-                            <div className="flex flex-wrap gap-2.5">
+                            <div className="flex md:flex-col items-center md:items-start gap-3">
+                                <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 shrink-0">
+                                    <cat.icon className="h-5 w-5" aria-hidden="true" />
+                                </span>
+                                <div>
+                                    <h3 className="text-base md:text-lg font-semibold text-white leading-snug">
+                                        {t(`techStack.${cat.title}`)}
+                                    </h3>
+                                    <p className="text-xs text-neutral-500 font-mono">
+                                        {String(cat.items.length).padStart(2, "0")} {t("techStack.count")}
+                                    </p>
+                                </div>
+                            </div>
+                            <ul className="flex flex-wrap content-start gap-2" aria-label={t(`techStack.${cat.title}`)}>
                                 {cat.items.map((tech) => (
-                                    <div
+                                    <li
                                         key={tech.name}
                                         title={tech.detail ?? tech.name}
-                                        className="group flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-blue-500/50 hover:bg-neutral-800 transition-colors duration-300 max-w-full"
+                                        className="group flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 border border-white/10 hover:border-blue-500/50 hover:bg-neutral-800 hover:-translate-y-0.5 transition-all duration-300 max-w-full"
                                     >
-                                        <tech.icon className="w-4 h-4 shrink-0 text-blue-400 group-hover:text-blue-300 transition-colors" />
-                                        <div className="flex flex-col leading-tight min-w-0">
-                                            <span className="text-xs md:text-sm font-medium text-neutral-300 group-hover:text-white transition-colors break-words">
-                                                {tech.name}
-                                            </span>
+                                        <tech.icon className="w-4 h-4 shrink-0 text-blue-400 group-hover:text-blue-300 transition-colors" aria-hidden="true" />
+                                        <span className="text-xs md:text-sm font-medium text-neutral-300 group-hover:text-white transition-colors break-words">
+                                            {tech.name}
                                             {tech.detail && (
-                                                <span className="text-[10px] text-neutral-500 break-words">
-                                                    {tech.detail}
-                                                </span>
+                                                <span className="ml-1.5 text-[10px] text-neutral-500">{tech.detail}</span>
                                             )}
-                                        </div>
-                                    </div>
+                                        </span>
+                                    </li>
                                 ))}
-                            </div>
+                            </ul>
                         </motion.div>
                     ))}
                 </div>

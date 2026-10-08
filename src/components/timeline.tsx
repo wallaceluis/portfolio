@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Code, GraduationCap, Calendar, Route } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
+import { SectionHeader } from "./ui/section-header";
 
 export const Timeline = () => {
     const { t } = useLanguage();
@@ -79,30 +80,21 @@ export const Timeline = () => {
         <section
             id="trajetoria"
             aria-labelledby="trajetoria-heading"
-            className="w-full bg-neutral-900 font-sans md:px-10 py-20 relative overflow-hidden scroll-mt-24"
+            className="w-full bg-neutral-950 font-sans md:px-10 py-20 md:py-28 relative overflow-hidden scroll-mt-24"
             ref={containerRef}
         >
             <div className="absolute top-0 inset-x-0 h-24 md:h-32 bg-gradient-to-b from-black to-transparent pointer-events-none" aria-hidden="true" />
 
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="max-w-7xl mx-auto px-4 mb-16 text-center"
-            >
-                <div className="flex justify-center mb-4">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-blue-300">
-                        <Route className="h-3.5 w-3.5" aria-hidden="true" />
-                        {t('timeline.sectionTitle')}
-                    </span>
-                </div>
-                <h2 id="trajetoria-heading" className="text-3xl md:text-5xl font-bold leading-tight pb-2 bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-500">
-                    {t('timeline.sectionTitle')}
-                </h2>
-                <p className="text-neutral-400 mt-4 max-w-2xl mx-auto text-sm md:text-base">
-                    {t('timeline.sectionSubtitleDev')}
-                </p>
-            </motion.div>
+            <div className="relative max-w-7xl mx-auto px-4">
+                <SectionHeader
+                    id="trajetoria-heading"
+                    index="03"
+                    label={t("nav.trajetoria")}
+                    title={t("timeline.sectionTitle")}
+                    subtitle={t("timeline.sectionSubtitleDev")}
+                    icon={Route}
+                />
+            </div>
 
             <div className="max-w-4xl mx-auto relative px-4">
 
@@ -121,14 +113,24 @@ export const Timeline = () => {
     );
 };
 
-const TimelineItem = ({ item, index }: { item: any, index: number }) => {
+type TimelineEntry = {
+    id: string;
+    icon: React.ReactNode;
+    color: string;
+    glowColor: string;
+    textClass: string;
+    borderClass: string;
+    content: { period: string; company: string; title: string; desc: string };
+};
+
+const TimelineItem = ({ item, index }: { item: TimelineEntry, index: number }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
         <div
             ref={ref}
-            className={`flex flex-col md:flex-row gap-8 mb-20 relative ${index % 2 === 0 ? "md:flex-row-reverse" : ""
+            className={`flex flex-col md:flex-row gap-3 md:gap-8 mb-12 last:mb-0 relative ${index % 2 === 0 ? "md:flex-row-reverse" : ""
                 }`}
         >
 
@@ -146,9 +148,9 @@ const TimelineItem = ({ item, index }: { item: any, index: number }) => {
                     initial={{ opacity: 0, x: index % 2 === 0 ? 20 : -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="flex flex-col gap-1 md:items-end justify-center"
+                    className="flex flex-col gap-1 md:items-end justify-start md:pt-1.5"
                 >
-                    <div className="flex items-center gap-2 text-neutral-400 text-sm font-mono">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-neutral-300 text-xs md:text-sm font-mono">
                         <Calendar size={14} />
                         {item.content.period}
                     </div>
@@ -157,10 +159,10 @@ const TimelineItem = ({ item, index }: { item: any, index: number }) => {
 
             <div className={`w-full md:w-1/2 flex ${index % 2 === 0 ? "md:justify-end" : "md:justify-start"} pl-16 md:pl-0`}>
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
-                    animate={isInView ? { opacity: 1, scale: 1, filter: "blur(0px)" } : {}}
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className={`relative w-full p-6 rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 border ${item.borderClass} hover:border-opacity-50 transition-colors shadow-2xl group`}
+                    className={`relative w-full p-6 rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 border ${item.borderClass} hover:border-white/20 transition-colors shadow-2xl group`}
                 >
                     <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-r ${item.glowColor} to-transparent`} />
 

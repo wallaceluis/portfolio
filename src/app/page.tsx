@@ -1,4 +1,5 @@
 "use client";
+import { MotionConfig } from "framer-motion";
 import { Hero } from "@/components/hero";
 import { Experience } from "@/components/experience";
 import { TechStack } from "@/components/tech-stack";
@@ -9,14 +10,17 @@ import { Navbar } from "@/components/navbar";
 
 export default function Home() {
     return (
-        <main className="min-h-screen bg-black text-white selection:bg-neutral-700 selection:text-white">
-            <Navbar />
-            <Hero />
-            <TechStack />
-            <Experience />
-            <Timeline />
-            <About />
-            <Footer />
-        </main>
+        // reducedMotion="user": respeita "reduzir movimento" do sistema em todas as animações
+        <MotionConfig reducedMotion="user">
+            <main className="min-h-screen bg-black text-white selection:bg-blue-500/40 selection:text-white">
+                <Navbar />
+                <Hero />
+                <TechStack />
+                <Experience />
+                <Timeline />
+                <About />
+                <Footer />
+            </main>
+        </MotionConfig>
     );
 }

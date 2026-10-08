@@ -40,7 +40,17 @@ const translations = {
             p1: "Sou um Desenvolvedor Full Stack com forte atuação em aplicações web, APIs e integrações. Tenho experiência profunda no gerenciamento de monorepos, arquitetura de microsserviços e infraestrutura multi-cloud. Construo produtos escaláveis integrando IA conversacional, APIs de comunicação multicanal e processamento assíncrono. No dia a dia, acelero minha produtividade utilizando continuamente ferramentas de desenvolvimento assistido por IA, como Cursor, Claude Code, Codex e integrações MCP.",
             p2: "Fora do código e das telas do terminal, sou um grande fã da cultura geek, apaixonado por animes, mangás e jogos. Mas, acima de qualquer stack tecnológica, o meu maior orgulho é ser pai do Levi e marido da Rafaela, que são a minha base e maior motivação."
         },
+        techStack: {
+            title: "Tech Stacks",
+            subtitle: "Ecossistema Full Stack — das linguagens base ao cloud e IA.",
+            count: "tecnologias",
+            languages: "Linguagens",
+            frontend: "Frontend & Mobile",
+            backend: "Backend & APIs",
+            infra: "Infraestrutura, Cloud & IA"
+        },
         footer: {
+            subtitle: "Aberto a novas oportunidades, freelas e boas conversas sobre tecnologia.",
             title: "Vamos construir algo incrível juntos",
             rights: "Todos os direitos reservados."
         },
@@ -160,7 +170,17 @@ const translations = {
             p1: "I'm a Full Stack Developer with strong experience in web applications, APIs and integrations. I have deep experience managing monorepos, microservices architecture and multi-cloud infrastructure. I build scalable products integrating conversational AI, multichannel communication APIs and async processing. Day to day, I boost my productivity by continuously using AI-assisted development tools like Cursor, Claude Code, Codex and MCP integrations.",
             p2: "Away from code and terminal screens, I'm a big fan of geek culture, passionate about anime, manga and games. But above any tech stack, my greatest pride is being Levi's father and Rafaela's husband — they're my foundation and greatest motivation."
         },
+        techStack: {
+            title: "Tech Stacks",
+            subtitle: "Full Stack ecosystem — from core languages to cloud and AI.",
+            count: "technologies",
+            languages: "Languages",
+            frontend: "Frontend & Mobile",
+            backend: "Backend & APIs",
+            infra: "Infrastructure, Cloud & AI"
+        },
         footer: {
+            subtitle: "Open to new opportunities, freelance work and good conversations about tech.",
             title: "Let's build something amazing together",
             rights: "All rights reserved."
         },
@@ -280,7 +300,17 @@ const translations = {
             p1: "Soy un Desarrollador Full Stack con sólida actuación en aplicaciones web, APIs e integraciones. Tengo experiencia profunda en gestión de monorepos, arquitectura de microservicios e infraestructura multi-cloud. Construyo productos escalables integrando IA conversacional, APIs de comunicación multicanal y procesamiento asíncrono. En el día a día, acelero mi productividad utilizando continuamente herramientas de desarrollo asistido por IA, como Cursor, Claude Code, Codex e integraciones MCP.",
             p2: "Fuera del código y de las pantallas del terminal, soy un gran fan de la cultura geek, apasionado por animes, mangas y juegos. Pero, por encima de cualquier stack tecnológica, mi mayor orgullo es ser padre de Levi y esposo de Rafaela, que son mi base y mi mayor motivación."
         },
+        techStack: {
+            title: "Tech Stacks",
+            subtitle: "Ecosistema Full Stack — de los lenguajes base a la nube y la IA.",
+            count: "tecnologías",
+            languages: "Lenguajes",
+            frontend: "Frontend & Mobile",
+            backend: "Backend & APIs",
+            infra: "Infraestructura, Cloud & IA"
+        },
         footer: {
+            subtitle: "Abierto a nuevas oportunidades, freelance y buenas charlas sobre tecnología.",
             title: "Construyamos algo increíble juntos",
             rights: "Todos los derechos reservados."
         },

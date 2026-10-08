@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/language-context";
 import { AiChatGate } from "@/components/ai-chat-gate";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://wallaceluis.com.br"),
@@ -44,25 +44,21 @@ export const metadata: Metadata = {
     siteName: "Wallace Luis — Portfólio",
     locale: "pt_BR",
     type: "website",
-    images: [
-      {
-        url: "/foto-perfil.jpg",
-        width: 800,
-        height: 800,
-        alt: "Foto de Wallace Luis, Desenvolvedor Full Stack Pleno",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Wallace Luis | Desenvolvedor Full Stack Pleno",
     description:
       "Full Stack Pleno: TypeScript, React, React Native, Node.js, microsserviços, cloud e IA generativa.",
-    images: ["/foto-perfil.jpg"],
   },
   icons: {
     icon: "/icon.svg",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#020617",
+  colorScheme: "dark",
 };
 
 const personJsonLd = {
