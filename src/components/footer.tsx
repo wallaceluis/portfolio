@@ -25,9 +25,6 @@ export const Footer = () => {
                         <h2 className="text-3xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-400 text-balance">
                             {t("footer.title")}
                         </h2>
-                        <p className="mt-4 text-neutral-400 max-w-xl mx-auto text-sm md:text-base text-pretty">
-                            {t("footer.subtitle")}
-                        </p>
 
                         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
                             <a
