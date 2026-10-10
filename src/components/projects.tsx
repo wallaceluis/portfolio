@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ExternalLink, FolderGit2, Github, Lock } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ExternalLink, FolderGit2, Github, Lock } from "lucide-react";
 
 import { useLanguage } from "@/contexts/language-context";
 import { SectionHeader } from "./ui/section-header";
@@ -33,7 +33,9 @@ type Project = {
 
 const GITHUB = "https://github.com/wallaceluis";
 
-/* Produtos completos, com print: os primeiros cards da seção */
+/* Projetos com print. Os VISIBLE primeiros aparecem sempre; o resto, ao expandir. */
+const VISIBLE = 6;
+
 const FEATURED: Project[] = [
     {
         id: "querolicita",
@@ -112,10 +114,6 @@ const FEATURED: Project[] = [
         tags: ["Electron", "React", "TypeScript", "OpenAI SDK", "Gemini TTS"],
         image: "/projects/english-assist.webp",
     },
-];
-
-/* Demais projetos: cards compactos, sem print */
-const PROJECTS: Project[] = [
     {
         repo: "coins-tracker",
         id: "coins-tracker",
@@ -132,7 +130,7 @@ const PROJECTS: Project[] = [
     {
         repo: "Talents-MultiOne",
         id: "Talents-MultiOne",
-        name: "Talents MultiOne",
+        name: "Talents",
         kind: { pt: "Full stack · equipe de 3", en: "Full stack · team of 3", es: "Full stack · equipo de 3" },
         description: {
             pt: "Sistema de recrutamento com gestão de empresas, vagas, candidatos e relatórios, autenticação JWT e perfis de acesso. CI com migrations e seed em Postgres real e teste de login na API; Docker e Nginx para deploy.",
@@ -142,6 +140,10 @@ const PROJECTS: Project[] = [
         tags: ["Nest.js", "Next.js", "Prisma", "PostgreSQL", "Docker", "GitHub Actions"],
         image: "/projects/talents.webp",
     },
+];
+
+/* Demais projetos: cards compactos, sem print */
+const PROJECTS: Project[] = [
     {
         repo: "hackernews-mcp-server",
         id: "hackernews-mcp-server",
@@ -178,39 +180,17 @@ const PROJECTS: Project[] = [
         },
         tags: ["Bun", "Hono", "BullMQ", "Redis", "Docker"],
     },
-    {
-        repo: "redis-sliding-window",
-        id: "redis-sliding-window",
-        name: { pt: "Limitador de requisições com Redis", en: "Redis rate limiter", es: "Limitador de peticiones con Redis" },
-        kind: { pt: "Biblioteca", en: "Library", es: "Librería" },
-        description: {
-            pt: "Rate limiting distribuído com o algoritmo Sliding Window Log em Redis: decisão atômica em um script Lua, um round trip por requisição e plugin pronto para Fastify.",
-            en: "Distributed rate limiting with the Sliding Window Log algorithm on Redis: atomic decision in a Lua script, one round trip per request and a ready-made Fastify plugin.",
-            es: "Rate limiting distribuido con el algoritmo Sliding Window Log en Redis: decisión atómica en un script Lua, un round trip por petición y plugin listo para Fastify.",
-        },
-        tags: ["Redis", "Lua", "Fastify", "TypeScript", "Jest"],
-    },
-    {
-        repo: "stale-branch-cleaner",
-        id: "stale-branch-cleaner",
-        name: { pt: "Limpeza automática de branches", en: "Automatic stale branch cleanup", es: "Limpieza automática de ramas" },
-        kind: { pt: "GitHub Action", en: "GitHub Action", es: "GitHub Action" },
-        description: {
-            pt: "Action que apaga branches inativas e sem PR aberto. Segura por padrão: dry-run, respeita branches protegidas e limita quantas apaga por execução.",
-            en: "Action that deletes inactive branches with no open PR. Safe by default: dry-run, respects protected branches and caps deletions per run.",
-            es: "Action que elimina ramas inactivas y sin PR abierto. Segura por defecto: dry-run, respeta ramas protegidas y limita cuántas borra por ejecución.",
-        },
-        tags: ["GitHub Actions", "TypeScript", "CI/CD"],
-    },
 ];
 
-const UI: Record<Lang, { title: string; subtitle: string; code: string; live: string; private: string; all: string }> = {
+const UI: Record<Lang, { title: string; subtitle: string; code: string; live: string; private: string; more: string; less: string; all: string }> = {
     pt: {
         title: "Projetos",
         subtitle: "Produtos que construí de ponta a ponta e ferramentas open source no GitHub.",
         code: "Ver código",
         live: "Ver online",
         private: "Código privado",
+        more: "Ver mais projetos",
+        less: "Mostrar menos",
         all: "Ver todos no GitHub",
     },
     en: {
@@ -219,6 +199,8 @@ const UI: Record<Lang, { title: string; subtitle: string; code: string; live: st
         code: "View code",
         live: "Try it live",
         private: "Private code",
+        more: "Show more projects",
+        less: "Show less",
         all: "See all on GitHub",
     },
     es: {
@@ -227,6 +209,8 @@ const UI: Record<Lang, { title: string; subtitle: string; code: string; live: st
         code: "Ver código",
         live: "Ver online",
         private: "Código privado",
+        more: "Ver más proyectos",
+        less: "Mostrar menos",
         all: "Ver todos en GitHub",
     },
 };
@@ -250,6 +234,82 @@ export const Projects = () => {
     const { language, t } = useLanguage();
     const lang = (["pt", "en", "es"].includes(language) ? language : "pt") as Lang;
     const ui = UI[lang];
+    const [expanded, setExpanded] = useState(false);
+    const hiddenCount = FEATURED.length - VISIBLE + PROJECTS.length;
+
+    const renderFeatured = (p: Project, idx: number) => {
+        const href = p.live ?? (p.repo ? `${GITHUB}/${p.repo}` : undefined);
+        return (
+            <motion.article
+                key={p.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ delay: (idx % 3) * 0.1, duration: 0.45 }}
+                className={`group relative flex flex-col rounded-2xl overflow-hidden bg-neutral-900/60 border border-white/10 shadow-2xl transition-[border-color,transform] duration-300 ${href ? "hover:border-blue-500/40 hover:-translate-y-1 focus-within:border-blue-500/40" : ""}`}
+            >
+                {p.image && (
+                    <div className="relative aspect-[16/9] overflow-hidden border-b border-white/10 bg-black">
+                        <Image
+                            src={p.image}
+                            alt={`Screenshot ${nameOf(p, lang)}`}
+                            fill
+                            sizes="(min-width: 1024px) 600px, 100vw"
+                            className={`object-cover object-top transition-transform duration-500 ${href ? "group-hover:scale-[1.03]" : ""}`}
+                        />
+                        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-neutral-950/80 to-transparent" aria-hidden="true" />
+                    </div>
+                )}
+                <div className="flex flex-col flex-1 p-6">
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                        <span className="text-xs font-medium text-blue-300">{p.kind[lang]}</span>
+                        {href ? (
+                            <ArrowUpRight className="w-4 h-4 text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" aria-hidden="true" />
+                        ) : (
+                            <span className="inline-flex items-center gap-1 text-[11px] text-neutral-500">
+                                <Lock className="w-3 h-3" aria-hidden="true" />
+                                {ui.private}
+                            </span>
+                        )}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">
+                        {href ? (
+                            <a
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
+                            >
+                                {nameOf(p, lang)}
+                                <span className="sr-only"> ({p.live ? ui.live : ui.code})</span>
+                            </a>
+                        ) : (
+                            nameOf(p, lang)
+                        )}
+                    </h3>
+                    <p className="text-neutral-400 text-sm leading-relaxed mb-5">{p.description[lang]}</p>
+                    <Tags tags={p.tags} label={`Tecnologias: ${nameOf(p, lang)}`} />
+                    {p.live && p.repo && (
+                        <div className="relative z-10 flex flex-wrap gap-4 mt-5 text-sm font-medium">
+                            <span className="inline-flex items-center gap-1.5 text-blue-300">
+                                <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                                {ui.live}
+                            </span>
+                            <a
+                                href={`${GITHUB}/${p.repo}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-neutral-400 hover:text-white transition-colors"
+                            >
+                                <Github className="w-4 h-4" aria-hidden="true" />
+                                {ui.code}
+                            </a>
+                        </div>
+                    )}
+                </div>
+            </motion.article>
+        );
+    };
 
     return (
         <section id="projetos" aria-labelledby="projects-heading" className="py-16 md:py-20 bg-neutral-950 relative overflow-hidden scroll-mt-24">
@@ -267,121 +327,67 @@ export const Projects = () => {
                 {/* Destaques com print. O link principal cobre o card inteiro (after:inset-0);
                     "Ver código" fica por cima quando o projeto também tem versão no ar. */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-                    {FEATURED.map((p, idx) => {
-                        const href = p.live ?? (p.repo ? `${GITHUB}/${p.repo}` : undefined);
-                        return (
-                            <motion.article
+                    {FEATURED.slice(0, VISIBLE).map(renderFeatured)}
+                </div>
+
+                {/* Recolhido por padrão; fica no HTML (hidden) para buscadores lerem todos os projetos */}
+                <div id="projetos-extra" hidden={!expanded} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {FEATURED.slice(VISIBLE).map(renderFeatured)}
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {PROJECTS.map((p, idx) => (
+                            <motion.a
                                 key={p.id}
+                                href={`${GITHUB}/${p.repo}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 initial={{ opacity: 0, y: 24 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.2 }}
-                                transition={{ delay: (idx % 3) * 0.1, duration: 0.45 }}
-                                className={`group relative flex flex-col rounded-2xl overflow-hidden bg-neutral-900/60 border border-white/10 shadow-2xl transition-[border-color,transform] duration-300 ${href ? "hover:border-blue-500/40 hover:-translate-y-1 focus-within:border-blue-500/40" : ""}`}
+                                transition={{ delay: (idx % 3) * 0.08, duration: 0.45 }}
+                                className="group relative flex flex-col rounded-2xl bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 border border-white/10 hover:border-blue-500/40 hover:-translate-y-1 transition-[border-color,transform] duration-300 p-6"
                             >
-                                {p.image && (
-                                    <div className="relative aspect-[16/9] overflow-hidden border-b border-white/10 bg-black">
-                                        <Image
-                                            src={p.image}
-                                            alt={`Screenshot ${nameOf(p, lang)}`}
-                                            fill
-                                            sizes="(min-width: 1024px) 600px, 100vw"
-                                            className={`object-cover object-top transition-transform duration-500 ${href ? "group-hover:scale-[1.03]" : ""}`}
-                                        />
-                                        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-neutral-950/80 to-transparent" aria-hidden="true" />
-                                    </div>
-                                )}
-                                <div className="flex flex-col flex-1 p-6">
-                                    <div className="flex items-center justify-between gap-3 mb-2">
-                                        <span className="text-xs font-medium text-blue-300">{p.kind[lang]}</span>
-                                        {href ? (
-                                            <ArrowUpRight className="w-4 h-4 text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" aria-hidden="true" />
-                                        ) : (
-                                            <span className="inline-flex items-center gap-1 text-[11px] text-neutral-500">
-                                                <Lock className="w-3 h-3" aria-hidden="true" />
-                                                {ui.private}
-                                            </span>
-                                        )}
-                                    </div>
-                                    <h3 className="text-xl font-bold text-white mb-2">
-                                        {href ? (
-                                            <a
-                                                href={href}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
-                                            >
-                                                {nameOf(p, lang)}
-                                                <span className="sr-only"> ({p.live ? ui.live : ui.code})</span>
-                                            </a>
-                                        ) : (
-                                            nameOf(p, lang)
-                                        )}
-                                    </h3>
-                                    <p className="text-neutral-400 text-sm leading-relaxed mb-5">{p.description[lang]}</p>
-                                    <Tags tags={p.tags} label={`Tecnologias: ${nameOf(p, lang)}`} />
-                                    {p.live && p.repo && (
-                                        <div className="relative z-10 flex flex-wrap gap-4 mt-5 text-sm font-medium">
-                                            <span className="inline-flex items-center gap-1.5 text-blue-300">
-                                                <ExternalLink className="w-4 h-4" aria-hidden="true" />
-                                                {ui.live}
-                                            </span>
-                                            <a
-                                                href={`${GITHUB}/${p.repo}`}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-1.5 text-neutral-400 hover:text-white transition-colors"
-                                            >
-                                                <Github className="w-4 h-4" aria-hidden="true" />
-                                                {ui.code}
-                                            </a>
-                                        </div>
-                                    )}
+                                <div className="flex items-center justify-between gap-3 mb-3">
+                                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-300">
+                                        <Github className="w-3.5 h-3.5" aria-hidden="true" />
+                                        {p.kind[lang]}
+                                    </span>
+                                    <ArrowUpRight className="w-4 h-4 text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" aria-hidden="true" />
                                 </div>
-                            </motion.article>
-                        );
-                    })}
+                                <h3 className="text-lg font-bold text-white tracking-tight leading-snug">{nameOf(p, lang)}</h3>
+                                <p className="font-mono text-xs text-neutral-500 mt-1 mb-2">{p.repo}</p>
+                                <p className="text-neutral-400 text-sm leading-relaxed mb-5">{p.description[lang]}</p>
+                                <Tags tags={p.tags} label={`Tecnologias: ${nameOf(p, lang)}`} />
+                                <span className="sr-only">{ui.code}</span>
+                            </motion.a>
+                        ))}
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {PROJECTS.map((p, idx) => (
-                        <motion.a
-                            key={p.id}
-                            href={`${GITHUB}/${p.repo}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.2 }}
-                            transition={{ delay: (idx % 3) * 0.08, duration: 0.45 }}
-                            className="group relative flex flex-col rounded-2xl bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 border border-white/10 hover:border-blue-500/40 hover:-translate-y-1 transition-[border-color,transform] duration-300 p-6"
-                        >
-                            <div className="flex items-center justify-between gap-3 mb-3">
-                                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-300">
-                                    <Github className="w-3.5 h-3.5" aria-hidden="true" />
-                                    {p.kind[lang]}
-                                </span>
-                                <ArrowUpRight className="w-4 h-4 text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" aria-hidden="true" />
-                            </div>
-                            <h3 className="text-lg font-bold text-white tracking-tight leading-snug">{nameOf(p, lang)}</h3>
-                            <p className="font-mono text-xs text-neutral-500 mt-1 mb-2">{p.repo}</p>
-                            <p className="text-neutral-400 text-sm leading-relaxed mb-5">{p.description[lang]}</p>
-                            <Tags tags={p.tags} label={`Tecnologias: ${nameOf(p, lang)}`} />
-                            <span className="sr-only">{ui.code}</span>
-                        </motion.a>
-                    ))}
-
-                    {/* Fecha a grelha de 3 colunas e leva ao perfil completo */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+                    <button
+                        type="button"
+                        onClick={() => {
+                            if (expanded) document.getElementById("projetos")?.scrollIntoView({ behavior: "smooth" });
+                            setExpanded(!expanded);
+                        }}
+                        aria-expanded={expanded}
+                        aria-controls="projetos-extra"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/15 text-sm font-medium text-white hover:bg-white/10 hover:border-blue-500/40 transition-colors"
+                    >
+                        {expanded ? ui.less : `${ui.more} (${hiddenCount})`}
+                        <ChevronDown className={`w-4 h-4 transition-transform ${expanded ? "rotate-180" : ""}`} aria-hidden="true" />
+                    </button>
                     <a
                         href={`${GITHUB}?tab=repositories`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-white/15 p-6 text-center text-neutral-400 hover:text-white hover:border-blue-500/40 hover:bg-white/[0.02] transition-colors min-h-[12rem]"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-neutral-400 hover:text-white transition-colors"
                     >
-                        <Github className="w-8 h-8" aria-hidden="true" />
-                        <span className="inline-flex items-center gap-1.5 text-sm font-medium">
-                            {ui.all}
-                            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
-                        </span>
+                        <Github className="w-4 h-4" aria-hidden="true" />
+                        {ui.all}
+                        <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                     </a>
                 </div>
             </div>
