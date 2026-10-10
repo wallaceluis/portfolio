@@ -51,7 +51,6 @@ const translations = {
             infra: "Infraestrutura, Cloud & IA"
         },
         footer: {
-            subtitle: "Aberto a novas oportunidades, freelas e boas conversas sobre tecnologia.",
             title: "Vamos construir algo incrível juntos",
             rights: "Todos os direitos reservados."
         },
@@ -182,7 +181,6 @@ const translations = {
             infra: "Infrastructure, Cloud & AI"
         },
         footer: {
-            subtitle: "Open to new opportunities, freelance work and good conversations about tech.",
             title: "Let's build something amazing together",
             rights: "All rights reserved."
         },
@@ -313,7 +311,6 @@ const translations = {
             infra: "Infraestructura, Cloud & IA"
         },
         footer: {
-            subtitle: "Abierto a nuevas oportunidades, freelance y buenas charlas sobre tecnología.",
             title: "Construyamos algo increíble juntos",
             rights: "Todos los derechos reservados."
         },
