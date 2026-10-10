@@ -54,11 +54,22 @@ export const Navbar = () => {
                     href="#top"
                     aria-label="Voltar ao topo"
                     onClick={() => setOpen(false)}
-                    className="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-950 border border-slate-800 shrink-0 hover:border-slate-700 transition-colors ml-1"
+                    className="block w-9 h-9 shrink-0 ml-1 rounded-[9px] hover:brightness-125 transition-[filter]"
                 >
-                    <span className="bg-gradient-to-tr from-cyan-400 via-indigo-500 to-pink-500 bg-clip-text text-transparent font-black text-xl leading-none">
-                        W
-                    </span>
+                    {/* Mesmo desenho de src/app/icon.svg: W em degradê + cursor de terminal */}
+                    <svg viewBox="0 0 100 100" className="w-full h-full" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="nav-logo-grad" x1="0" y1="1" x2="1" y2="0">
+                                <stop offset="0" stopColor="#22d3ee" />
+                                <stop offset=".55" stopColor="#6366f1" />
+                                <stop offset="1" stopColor="#a855f7" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="100" height="100" rx="24" fill="#0b1120" />
+                        <rect x="1.5" y="1.5" width="97" height="97" rx="22.5" fill="none" stroke="#1e293b" strokeWidth="3" />
+                        <path d="M16 30 L27 64 L38 42 L49 64 L60 30" fill="none" stroke="url(#nav-logo-grad)" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" />
+                        <rect x="66" y="58" width="20" height="9" rx="2" fill="#f8fafc" />
+                    </svg>
                 </Link>
 
                 {/* Desktop / tablet */}
