@@ -51,9 +51,6 @@ export const metadata: Metadata = {
     description:
       "Full Stack Pleno: TypeScript, React, React Native, Node.js, microsserviços, cloud e IA generativa.",
   },
-  icons: {
-    icon: "/icon.svg",
-  },
 };
 
 export const viewport: Viewport = {
