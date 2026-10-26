@@ -48,6 +48,7 @@ const FEATURED: Project[] = [
         },
         tags: ["Next.js", "TypeScript", "PostgreSQL", "IA", "Resend", "GitHub Actions"],
         image: "/projects/querolicita.webp",
+        live: "https://querolicita.com.br/",
     },
     {
         id: "site-rapido",
@@ -289,21 +290,23 @@ export const Projects = () => {
                     </h3>
                     <p className="text-neutral-400 text-sm leading-relaxed mb-5">{p.description[lang]}</p>
                     <Tags tags={p.tags} label={`Tecnologias: ${nameOf(p, lang)}`} />
-                    {p.live && p.repo && (
-                        <div className="relative z-10 flex flex-wrap gap-4 mt-5 text-sm font-medium">
+                    {p.live && (
+                        <div className="flex flex-wrap gap-4 mt-5 text-sm font-medium">
                             <span className="inline-flex items-center gap-1.5 text-blue-300">
                                 <ExternalLink className="w-4 h-4" aria-hidden="true" />
                                 {ui.live}
                             </span>
-                            <a
-                                href={`${GITHUB}/${p.repo}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 text-neutral-400 hover:text-white transition-colors"
-                            >
-                                <Github className="w-4 h-4" aria-hidden="true" />
-                                {ui.code}
-                            </a>
+                            {p.repo && (
+                                <a
+                                    href={`${GITHUB}/${p.repo}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="relative z-10 inline-flex items-center gap-1.5 text-neutral-400 hover:text-white transition-colors"
+                                >
+                                    <Github className="w-4 h-4" aria-hidden="true" />
+                                    {ui.code}
+                                </a>
+                            )}
                         </div>
                     )}
                 </div>
