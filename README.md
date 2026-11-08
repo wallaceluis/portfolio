@@ -10,7 +10,7 @@ O projeto foi construído com uma stack robusta e focada em performance e UX:
 *   **[TypeScript](https://www.typescriptlang.org/)**: Tipagem estática para maior segurança e manutenibilidade do código.
 *   **[Tailwind CSS](https://tailwindcss.com/)**: Estilização utilitária para designs rápidos e responsivos.
 *   **[Framer Motion](https://www.framer.com/motion/)**: Biblioteca para animações fluidas e complexas.
-*   **[Google Gemini AI (`@google/genai`)](https://ai.google.dev/gemini-api/docs)**: Integração com a API do Gemini para o chatbot inteligente (cadeia `gemini-2.5-flash-lite` → `gemini-2.5-flash` → `gemini-2.0-flash`).
+*   **[Google Gemini AI (`@google/genai`)](https://ai.google.dev/gemini-api/docs)**: Integração server-side com a API do Gemini para o chatbot inteligente (cadeia `gemini-2.5-flash-lite` → `gemini-2.5-flash` → `gemini-2.0-flash`).
 *   **[Lucide React](https://lucide.dev/)**: Ícones leves e consistentes.
 *   **Web Speech API**: Para reconhecimento de voz e transcrição em tempo real.
 
@@ -41,7 +41,7 @@ Linha do tempo animada com scroll:
 ### 4. Chatbot com IA (Estilo WhatsApp)
 Um assistente virtual inteligente integrado que simula uma conversa de WhatsApp:
 *   **Design Realista**: Interface idêntica ao WhatsApp Web/Mobile.
-*   **IA Generativa**: Responde perguntas sobre a carreira e skills do Wallace utilizando o Google Gemini, com respostas curtas estilo WhatsApp (`maxOutputTokens`).
+*   **IA Generativa (Server-Side)**: Responde perguntas sobre a carreira e skills do Wallace utilizando o Google Gemini via Route Handler (`/api/chat`), com respostas curtas estilo WhatsApp (`maxOutputTokens`).
 *   **Fallback de modelos**: Troca automática entre modelos em caso de falha/quota.
 *   **CTA direto**: Botão para falar com o Wallace no WhatsApp (+55 19 98257-1877).
 *   **Comando de Voz**: Permite ao usuário enviar mensagens por voz (Speech-to-Text).
@@ -72,9 +72,9 @@ Suporte completo a múltiplos idiomas com troca instantânea:
     ```
 
 3.  Configure as variáveis de ambiente:
-    Crie um arquivo `.env.local` na raiz do projeto e adicione sua chave da API do Gemini:
+    Crie um arquivo `.env.local` na raiz do projeto e adicione sua chave da API do Gemini (variável exclusiva do servidor):
     ```env
-    NEXT_PUBLIC_GEMINI_API_KEY=sua_chave_aqui
+    GEMINI_API_KEY=sua_chave_aqui
     ```
 
 4.  Execute o servidor de desenvolvimento:
@@ -104,7 +104,7 @@ The project was built with a robust stack focused on performance and UX:
 *   **[TypeScript](https://www.typescriptlang.org/)**: Static typing for greater code safety and maintainability.
 *   **[Tailwind CSS](https://tailwindcss.com/)**: Utility-first CSS for fast and responsive designs.
 *   **[Framer Motion](https://www.framer.com/motion/)**: Library for fluid and complex animations.
-*   **[Google Gemini AI (`@google/genai`)](https://ai.google.dev/gemini-api/docs)**: Integration with the Gemini API for the intelligent chatbot (`gemini-2.5-flash-lite` → `gemini-2.5-flash` → `gemini-2.0-flash` fallback chain).
+*   **[Google Gemini AI (`@google/genai`)](https://ai.google.dev/gemini-api/docs)**: Server-side integration with the Gemini API for the intelligent chatbot (`gemini-2.5-flash-lite` → `gemini-2.5-flash` → `gemini-2.0-flash` fallback chain).
 *   **[Lucide React](https://lucide.dev/)**: Lightweight and consistent icons.
 *   **Web Speech API**: For real-time voice recognition and transcription.
 
@@ -135,7 +135,7 @@ Animated scroll timeline:
 ### 4. AI Chatbot (WhatsApp Style)
 An intelligent virtual assistant integrated that simulates a WhatsApp conversation:
 *   **Realistic Design**: Interface identical to WhatsApp Web/Mobile.
-*   **Generative AI**: Answers questions about Wallace's career and skills using Google Gemini, with short WhatsApp-style answers (`maxOutputTokens`).
+*   **Generative AI (Server-Side)**: Answers questions about Wallace's career and skills using Google Gemini via a server-side Route Handler (`/api/chat`), with short WhatsApp-style answers (`maxOutputTokens`).
 *   **Model fallback**: Automatic switching between models on failure/quota.
 *   **Direct CTA**: Button to talk to Wallace on WhatsApp (+55 19 98257-1877).
 *   **Voice Command**: Allows the user to send messages via voice (Speech-to-Text).
@@ -166,9 +166,9 @@ Full support for multiple languages with instant switching:
     ```
 
 3.  Configure environment variables:
-    Create a `.env.local` file in the project root and add your Gemini API key:
+    Create a `.env.local` file in the project root and add your Gemini API key (server-only variable):
     ```env
-    NEXT_PUBLIC_GEMINI_API_KEY=your_key_here
+    GEMINI_API_KEY=your_key_here
     ```
 
 4.  Run the development server:

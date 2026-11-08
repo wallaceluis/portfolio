@@ -14,8 +14,6 @@ RUN npm ci
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-ARG NEXT_PUBLIC_GEMINI_API_KEY
-ENV NEXT_PUBLIC_GEMINI_API_KEY=$NEXT_PUBLIC_GEMINI_API_KEY
 RUN mkdir -p public && npm run build
 
 # 3. Imagem final leve (standalone)
