@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/language-context";
 import { AiChatGate } from "@/components/ai-chat-gate";
@@ -101,6 +102,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="scroll-smooth">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-M8XQ53DN"
+          strategy="afterInteractive"
+        />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-9RSNGFE5VW"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-9RSNGFE5VW');
+          `}
+        </Script>
+      </head>
       <body className={`${inter.className} bg-black text-white antialiased`}>
         <script
           type="application/ld+json"
